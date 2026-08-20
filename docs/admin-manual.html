@@ -1,863 +1,1251 @@
 <!doctype html>
 <html lang="ko">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>기관 통합관리시스템 관리자 매뉴얼</title>
-<style>
-  :root {
-    --paper: #f6f4ef;
-    --surface: #ffffff;
-    --surface-alt: #eef1f6;
-    --ink: #1c2333;
-    --ink-muted: #5c6472;
-    --ink-faint: #8890a0;
-    --line: #e3ded2;
-    --line-soft: #ece7db;
-    --navy: #16233f;
-    --navy-soft: #24365c;
-    --accent: #b5601c;
-    --accent-soft: #f4e3ce;
-    --good: #2f8a58;
-    --good-soft: #e2f2e8;
-    --warn: #a5760b;
-    --warn-soft: #faf0d8;
-    --bad: #c23b3b;
-    --bad-soft: #fbe6e6;
-    --shot-mat: #ececec;
-    --shot-border: #d7d7d7;
-    --shot-bar: #f4f4f4;
-    --focus: #7b8cff;
-  }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>기관 통합관리시스템 관리자 매뉴얼</title>
+    <style>
+      :root {
+        --paper: #f6f4ef;
+        --surface: #ffffff;
+        --surface-alt: #eef1f6;
+        --ink: #1c2333;
+        --ink-muted: #5c6472;
+        --ink-faint: #8890a0;
+        --line: #e3ded2;
+        --line-soft: #ece7db;
+        --navy: #16233f;
+        --navy-soft: #24365c;
+        --accent: #b5601c;
+        --accent-soft: #f4e3ce;
+        --good: #2f8a58;
+        --good-soft: #e2f2e8;
+        --warn: #a5760b;
+        --warn-soft: #faf0d8;
+        --bad: #c23b3b;
+        --bad-soft: #fbe6e6;
+        --shot-mat: #ececec;
+        --shot-border: #d7d7d7;
+        --shot-bar: #f4f4f4;
+        --focus: #7b8cff;
+      }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #14161c;
-      --surface: #1b1e26;
-      --surface-alt: #20242f;
-      --ink: #ecebe6;
-      --ink-muted: #a6a9b4;
-      --ink-faint: #767a87;
-      --line: #2c303b;
-      --line-soft: #262a34;
-      --navy: #b9c4de;
-      --navy-soft: #8f9dc2;
-      --accent: #e2954f;
-      --accent-soft: #3a2c1c;
-      --good: #6fd39a;
-      --good-soft: #17301f;
-      --warn: #e0b955;
-      --warn-soft: #332a10;
-      --bad: #f08080;
-      --bad-soft: #331616;
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper: #14161c;
-    --surface: #1b1e26;
-    --surface-alt: #20242f;
-    --ink: #ecebe6;
-    --ink-muted: #a6a9b4;
-    --ink-faint: #767a87;
-    --line: #2c303b;
-    --line-soft: #262a34;
-    --navy: #b9c4de;
-    --navy-soft: #8f9dc2;
-    --accent: #e2954f;
-    --accent-soft: #3a2c1c;
-    --good: #6fd39a;
-    --good-soft: #17301f;
-    --warn: #e0b955;
-    --warn-soft: #332a10;
-    --bad: #f08080;
-    --bad-soft: #331616;
-  }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper: #14161c;
+          --surface: #1b1e26;
+          --surface-alt: #20242f;
+          --ink: #ecebe6;
+          --ink-muted: #a6a9b4;
+          --ink-faint: #767a87;
+          --line: #2c303b;
+          --line-soft: #262a34;
+          --navy: #b9c4de;
+          --navy-soft: #8f9dc2;
+          --accent: #e2954f;
+          --accent-soft: #3a2c1c;
+          --good: #6fd39a;
+          --good-soft: #17301f;
+          --warn: #e0b955;
+          --warn-soft: #332a10;
+          --bad: #f08080;
+          --bad-soft: #331616;
+        }
+      }
+      :root[data-theme="dark"] {
+        --paper: #14161c;
+        --surface: #1b1e26;
+        --surface-alt: #20242f;
+        --ink: #ecebe6;
+        --ink-muted: #a6a9b4;
+        --ink-faint: #767a87;
+        --line: #2c303b;
+        --line-soft: #262a34;
+        --navy: #b9c4de;
+        --navy-soft: #8f9dc2;
+        --accent: #e2954f;
+        --accent-soft: #3a2c1c;
+        --good: #6fd39a;
+        --good-soft: #17301f;
+        --warn: #e0b955;
+        --warn-soft: #332a10;
+        --bad: #f08080;
+        --bad-soft: #331616;
+      }
 
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic",
-      "Noto Sans KR", "Segoe UI", sans-serif;
-    line-height: 1.6;
-    font-size: 15.5px;
-    -webkit-font-smoothing: antialiased;
-  }
-  h1, h2, h3, h4 { text-wrap: balance; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
-  a { color: var(--accent); }
-  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-    outline: 2px solid var(--focus);
-    outline-offset: 2px;
-  }
-  ::selection { background: var(--accent-soft); }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Segoe UI", sans-serif;
+        line-height: 1.6;
+        font-size: 15.5px;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        text-wrap: balance;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      a {
+        color: var(--accent);
+      }
+      a:focus-visible,
+      button:focus-visible,
+      [tabindex]:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
+      ::selection {
+        background: var(--accent-soft);
+      }
 
-  /* ---------- top bar ---------- */
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 40;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 14px 24px;
-    background: var(--navy);
-    color: #fff;
-  }
-  .topbar .brand {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 15px;
-    letter-spacing: -0.01em;
-  }
-  .topbar .brand small {
-    font-weight: 500;
-    font-size: 11.5px;
-    color: rgba(255,255,255,0.62);
-    letter-spacing: 0.02em;
-  }
-  .tabswitch {
-    display: flex;
-    gap: 2px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 3px;
-  }
-  .tabswitch button {
-    appearance: none;
-    border: none;
-    background: transparent;
-    color: rgba(255,255,255,0.75);
-    font: inherit;
-    font-weight: 700;
-    font-size: 12.5px;
-    padding: 7px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    letter-spacing: -0.01em;
-  }
-  .tabswitch button[aria-selected="true"] {
-    background: #fff;
-    color: var(--navy);
-  }
+      /* ---------- top bar ---------- */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 24px;
+        background: var(--navy);
+        color: #fff;
+      }
+      .topbar .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 15px;
+        letter-spacing: -0.01em;
+      }
+      .topbar .brand small {
+        font-weight: 500;
+        font-size: 11.5px;
+        color: rgba(255, 255, 255, 0.62);
+        letter-spacing: 0.02em;
+      }
+      .tabswitch {
+        display: flex;
+        gap: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 3px;
+      }
+      .tabswitch button {
+        appearance: none;
+        border: none;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.75);
+        font: inherit;
+        font-weight: 700;
+        font-size: 12.5px;
+        padding: 7px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        letter-spacing: -0.01em;
+      }
+      .tabswitch button[aria-selected="true"] {
+        background: #fff;
+        color: var(--navy);
+      }
 
-  /* ---------- page shell ---------- */
-  .shell {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 24px 96px;
-  }
-  .hero {
-    padding: 44px 0 30px;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 34px;
-  }
-  .hero .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11.5px;
-    font-weight: 800;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-  }
-  .hero .eyebrow::before {
-    content: "";
-    width: 18px;
-    height: 1.5px;
-    background: var(--accent);
-  }
-  .hero h1 { font-size: clamp(26px, 3.4vw, 34px); margin: 0 0 12px; }
-  .hero p.lead {
-    max-width: 62ch;
-    color: var(--ink-muted);
-    font-size: 16px;
-    margin: 0 0 18px;
-  }
-  .hero .meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 22px;
-    font-size: 12.5px;
-    color: var(--ink-faint);
-  }
-  .hero .meta b { color: var(--ink-muted); font-weight: 700; }
+      /* ---------- page shell ---------- */
+      .shell {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px 96px;
+      }
+      .hero {
+        padding: 44px 0 30px;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 34px;
+      }
+      .hero .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11.5px;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 14px;
+      }
+      .hero .eyebrow::before {
+        content: "";
+        width: 18px;
+        height: 1.5px;
+        background: var(--accent);
+      }
+      .hero h1 {
+        font-size: clamp(26px, 3.4vw, 34px);
+        margin: 0 0 12px;
+      }
+      .hero p.lead {
+        max-width: 70ch;
+        color: var(--ink-muted);
+        font-size: 16px;
+        margin: 0 0 18px;
+      }
+      .hero .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 22px;
+        font-size: 12.5px;
+        color: var(--ink-faint);
+      }
+      .hero .meta b {
+        color: var(--ink-muted);
+        font-weight: 700;
+      }
 
-  /* ---------- layout: toc + content ---------- */
-  .layout {
-    display: grid;
-    grid-template-columns: 236px minmax(0, 1fr);
-    gap: 44px;
-    align-items: start;
-  }
-  .toc {
-    position: sticky;
-    top: 70px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 4px 0;
-  }
-  .toc-label {
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-faint);
-    margin: 0 0 8px 12px;
-  }
-  .toc a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: var(--ink-muted);
-    text-decoration: none;
-    font-size: 13.5px;
-    font-weight: 600;
-    border-left: 2px solid transparent;
-  }
-  .toc a:hover { background: var(--surface-alt); color: var(--ink); }
-  .toc a .badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 19px;
-    height: 19px;
-    border-radius: 5px;
-    background: var(--surface-alt);
-    color: var(--ink-faint);
-    font-size: 11px;
-    font-weight: 800;
-    font-variant-numeric: tabular-nums;
-    flex: none;
-  }
+      /* ---------- layout: toc + content ---------- */
+      .layout {
+        display: grid;
+        grid-template-columns: 236px minmax(0, 1fr);
+        gap: 44px;
+        align-items: start;
+      }
+      .toc {
+        position: sticky;
+        top: 70px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 4px 0;
+      }
+      .toc-label {
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-faint);
+        margin: 0 0 8px 12px;
+      }
+      .toc a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        color: var(--ink-muted);
+        text-decoration: none;
+        font-size: 13.5px;
+        font-weight: 600;
+        border-left: 2px solid transparent;
+      }
+      .toc a:hover {
+        background: var(--surface-alt);
+        color: var(--ink);
+      }
+      .toc a .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 19px;
+        height: 19px;
+        border-radius: 5px;
+        background: var(--surface-alt);
+        color: var(--ink-faint);
+        font-size: 11px;
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+        flex: none;
+      }
 
-  main { min-width: 0; }
+      main {
+        min-width: 0;
+      }
 
-  section.chapter {
-    padding: 8px 0 56px;
-    border-bottom: 1px solid var(--line-soft);
-    margin-bottom: 12px;
-    scroll-margin-top: 76px;
-  }
-  section.chapter:last-child { border-bottom: none; }
+      section.chapter {
+        padding: 8px 0 56px;
+        border-bottom: 1px solid var(--line-soft);
+        margin-bottom: 12px;
+        scroll-margin-top: 76px;
+      }
+      section.chapter:last-child {
+        border-bottom: none;
+      }
 
-  .chapter-head {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 18px;
-  }
-  .chapter-num {
-    flex: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    background: var(--navy);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 17px;
-    font-variant-numeric: tabular-nums;
-  }
-  .chapter-head h2 { font-size: 21px; margin: 0 0 4px; }
-  .chapter-head .sub { color: var(--ink-muted); font-size: 14px; max-width: 60ch; }
+      .chapter-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      .chapter-num {
+        flex: none;
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: var(--navy);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 17px;
+        font-variant-numeric: tabular-nums;
+      }
+      .chapter-head h2 {
+        font-size: 21px;
+        margin: 0 0 4px;
+      }
+      .chapter-head .sub {
+        color: var(--ink-muted);
+        font-size: 14px;
+        max-width: 60ch;
+      }
 
-  .steps {
-    list-style: none;
-    margin: 0 0 22px;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .steps li {
-    display: flex;
-    gap: 12px;
-    padding: 12px 14px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    font-size: 14px;
-  }
-  .steps li .n {
-    flex: none;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--accent-soft);
-    color: var(--accent);
-    font-weight: 800;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-variant-numeric: tabular-nums;
-    margin-top: 1px;
-  }
-  .steps li b { color: var(--ink); }
-  .steps li .path {
-    display: inline-block;
-    padding: 1px 6px;
-    background: var(--surface-alt);
-    border-radius: 4px;
-    font-size: 12px;
-    color: var(--ink-muted);
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
+      .steps {
+        list-style: none;
+        margin: 0 0 22px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .steps li {
+        display: flex;
+        gap: 12px;
+        padding: 12px 14px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        font-size: 14px;
+      }
+      .steps li .n {
+        flex: none;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-weight: 800;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-variant-numeric: tabular-nums;
+        margin-top: 1px;
+      }
+      .steps li b {
+        color: var(--ink);
+      }
+      .steps li .path {
+        display: inline-block;
+        padding: 1px 6px;
+        background: var(--surface-alt);
+        border-radius: 4px;
+        font-size: 12px;
+        color: var(--ink-muted);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
 
-  .callout {
-    display: flex;
-    gap: 10px;
-    padding: 12px 14px;
-    border-radius: 10px;
-    font-size: 13.5px;
-    margin: 14px 0;
-    border: 1px solid transparent;
-  }
-  .callout .tag {
-    flex: none;
-    font-weight: 800;
-    font-size: 11px;
-    letter-spacing: 0.03em;
-    padding: 2px 7px;
-    border-radius: 5px;
-    height: fit-content;
-  }
-  .callout.tip { background: var(--good-soft); border-color: color-mix(in srgb, var(--good) 30%, transparent); }
-  .callout.tip .tag { background: var(--good); color: #fff; }
-  .callout.warn { background: var(--warn-soft); border-color: color-mix(in srgb, var(--warn) 30%, transparent); }
-  .callout.warn .tag { background: var(--warn); color: #fff; }
-  .callout p { margin: 0; color: var(--ink); }
+      .callout {
+        display: flex;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 13.5px;
+        margin: 14px 0;
+        border: 1px solid transparent;
+      }
+      .callout .tag {
+        flex: none;
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 0.03em;
+        padding: 2px 7px;
+        border-radius: 5px;
+        height: fit-content;
+      }
+      .callout.tip {
+        background: var(--good-soft);
+        border-color: color-mix(in srgb, var(--good) 30%, transparent);
+      }
+      .callout.tip .tag {
+        background: var(--good);
+        color: #fff;
+      }
+      .callout.warn {
+        background: var(--warn-soft);
+        border-color: color-mix(in srgb, var(--warn) 30%, transparent);
+      }
+      .callout.warn .tag {
+        background: var(--warn);
+        color: #fff;
+      }
+      .callout p {
+        margin: 0;
+        color: var(--ink);
+      }
 
-  .grid2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-  @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } }
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      @media (max-width: 720px) {
+        .grid2 {
+          grid-template-columns: 1fr;
+        }
+      }
 
-  /* ---------- screenshot frame ---------- */
-  figure.shot {
-    margin: 18px 0;
-    background: var(--shot-mat);
-    border: 1px solid var(--shot-border);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -14px rgba(0,0,0,0.25);
-  }
-  figure.shot .bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 10px;
-    background: var(--shot-bar);
-    border-bottom: 1px solid var(--shot-border);
-  }
-  figure.shot .bar .dots { display: flex; gap: 5px; flex: none; }
-  figure.shot .bar .dots span {
-    width: 9px; height: 9px; border-radius: 50%; background: #d3d3d3;
-  }
-  figure.shot .bar .url {
-    flex: 1;
-    background: #fff;
-    border: 1px solid #e2e2e2;
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 11px;
-    color: #7a7a7a;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  figure.shot img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  figure.shot figcaption {
-    padding: 9px 12px;
-    font-size: 12.5px;
-    color: #6b6b6b;
-    background: #f7f7f7;
-    border-top: 1px solid var(--shot-border);
-  }
+      /* ---------- screenshot frame ---------- */
+      figure.shot {
+        margin: 18px 0;
+        background: var(--shot-mat);
+        border: 1px solid var(--shot-border);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.04),
+          0 8px 24px -14px rgba(0, 0, 0, 0.25);
+      }
+      figure.shot .bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        background: var(--shot-bar);
+        border-bottom: 1px solid var(--shot-border);
+      }
+      figure.shot .bar .dots {
+        display: flex;
+        gap: 5px;
+        flex: none;
+      }
+      figure.shot .bar .dots span {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #d3d3d3;
+      }
+      figure.shot .bar .url {
+        flex: 1;
+        background: #fff;
+        border: 1px solid #e2e2e2;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 11px;
+        color: #7a7a7a;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      figure.shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      figure.shot figcaption {
+        padding: 9px 12px;
+        font-size: 12.5px;
+        color: #6b6b6b;
+        background: #f7f7f7;
+        border-top: 1px solid var(--shot-border);
+      }
 
-  table.ref {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    margin: 14px 0;
-  }
-  table.ref th, table.ref td {
-    text-align: left;
-    padding: 9px 10px;
-    border-bottom: 1px solid var(--line);
-    vertical-align: top;
-  }
-  table.ref th {
-    color: var(--ink-faint);
-    font-weight: 700;
-    font-size: 11.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  table.ref td.role { font-weight: 700; white-space: nowrap; }
+      table.ref {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        margin: 14px 0;
+      }
+      table.ref th,
+      table.ref td {
+        text-align: left;
+        padding: 9px 10px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      table.ref th {
+        color: var(--ink-faint);
+        font-weight: 700;
+        font-size: 11.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      table.ref td.role {
+        font-weight: 700;
+        white-space: nowrap;
+      }
 
-  .pill {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-size: 11.5px;
-    font-weight: 700;
-  }
-  .pill.super { background: var(--bad-soft); color: var(--bad); }
-  .pill.org { background: var(--accent-soft); color: var(--accent); }
-  .pill.staff { background: var(--surface-alt); color: var(--ink-muted); }
+      .pill {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 11.5px;
+        font-weight: 700;
+      }
+      .pill.super {
+        background: var(--bad-soft);
+        color: var(--bad);
+      }
+      .pill.org {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .pill.staff {
+        background: var(--surface-alt);
+        color: var(--ink-muted);
+      }
 
-  /* ---------- script tab ---------- */
-  .script-wrap { max-width: 880px; }
-  .script-wrap h2 { font-size: 20px; margin: 40px 0 14px; }
-  .script-wrap h2:first-child { margin-top: 0; }
+      /* ---------- script tab ---------- */
+      .script-wrap {
+        max-width: 880px;
+      }
+      .script-wrap h2 {
+        font-size: 20px;
+        margin: 40px 0 14px;
+      }
+      .script-wrap h2:first-child {
+        margin-top: 0;
+      }
 
-  .runsheet { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 10px 0 6px; }
-  .runsheet th, .runsheet td { border-bottom: 1px solid var(--line); padding: 10px 10px; text-align: left; vertical-align: top; }
-  .runsheet th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
-  .runsheet td.time { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--accent); font-weight: 700; }
-  .runsheet td.topic { font-weight: 700; }
+      .runsheet {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+        margin: 10px 0 6px;
+      }
+      .runsheet th,
+      .runsheet td {
+        border-bottom: 1px solid var(--line);
+        padding: 10px 10px;
+        text-align: left;
+        vertical-align: top;
+      }
+      .runsheet th {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-faint);
+      }
+      .runsheet td.time {
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .runsheet td.topic {
+        font-weight: 700;
+      }
 
-  .faq { display: flex; flex-direction: column; gap: 10px; margin: 10px 0 6px; }
-  .faq details {
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 12px 14px;
-    background: var(--surface);
-  }
-  .faq summary {
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 14px;
-    list-style: none;
-  }
-  .faq summary::-webkit-details-marker { display: none; }
-  .faq summary::before { content: "Q  "; color: var(--accent); font-weight: 800; }
-  .faq p { margin: 8px 0 0; color: var(--ink-muted); font-size: 13.5px; padding-left: 22px; }
+      .faq {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 10px 0 6px;
+      }
+      .faq details {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 12px 14px;
+        background: var(--surface);
+      }
+      .faq summary {
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 14px;
+        list-style: none;
+      }
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq summary::before {
+        content: "Q  ";
+        color: var(--accent);
+        font-weight: 800;
+      }
+      .faq p {
+        margin: 8px 0 0;
+        color: var(--ink-muted);
+        font-size: 13.5px;
+        padding-left: 22px;
+      }
 
-  .checklist { list-style: none; margin: 10px 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-  .checklist li {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    font-size: 13.5px;
-    padding: 10px 12px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-  }
-  .checklist li::before {
-    content: "";
-    flex: none;
-    width: 16px; height: 16px;
-    margin-top: 2px;
-    border-radius: 4px;
-    border: 1.5px solid var(--ink-faint);
-  }
+      .checklist {
+        list-style: none;
+        margin: 10px 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .checklist li {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 13.5px;
+        padding: 10px 12px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .checklist li::before {
+        content: "";
+        flex: none;
+        width: 16px;
+        height: 16px;
+        margin-top: 2px;
+        border-radius: 4px;
+        border: 1.5px solid var(--ink-faint);
+      }
 
-  .note-strip {
-    background: var(--navy);
-    color: #fff;
-    border-radius: 12px;
-    padding: 16px 18px;
-    font-size: 13.5px;
-    margin: 18px 0;
-  }
-  .note-strip b { color: var(--e2954f, #f0b673); }
+      .note-strip {
+        background: var(--navy);
+        color: #fff;
+        border-radius: 12px;
+        padding: 16px 18px;
+        font-size: 13.5px;
+        margin: 18px 0;
+      }
+      .note-strip b {
+        color: var(--e2954f, #f0b673);
+      }
 
-  [hidden] { display: none !important; }
+      [hidden] {
+        display: none !important;
+      }
 
-  footer.pagefoot {
-    max-width: 1180px;
-    margin: 40px auto 0;
-    padding: 20px 24px 40px;
-    color: var(--ink-faint);
-    font-size: 12px;
-    border-top: 1px solid var(--line);
-  }
+      footer.pagefoot {
+        max-width: 1180px;
+        margin: 40px auto 0;
+        padding: 20px 24px 40px;
+        color: var(--ink-faint);
+        font-size: 12px;
+        border-top: 1px solid var(--line);
+      }
 
-  @media (max-width: 900px) {
-    .layout { grid-template-columns: 1fr; }
-    .toc { position: static; flex-direction: row; flex-wrap: wrap; }
-    .toc-label { display: none; }
-    .toc a { border: 1px solid var(--line); }
-  }
-</style>
-</head>
-<body>
-
-
-<div class="topbar">
-  <div class="brand">기관 통합관리시스템<small>관리자 콘솔 교육 자료</small></div>
-  <div class="tabswitch" role="tablist">
-    <button type="button" role="tab" aria-selected="true" data-tab="manual">매뉴얼</button>
-    <button type="button" role="tab" aria-selected="false" data-tab="script">교육 진행 스크립트</button>
-  </div>
-</div>
-
-<div id="panel-manual">
-  <div class="shell">
-    <div class="hero">
-      <span class="eyebrow">관리자 매뉴얼</span>
-      <h1>기관 담당자를 위한<br />관리자 콘솔 사용 안내</h1>
-      <p class="lead">
-        사업단 등록부터 참여자 근태·안전 관제까지, 관리자 콘솔 왼쪽 메뉴 순서 그대로 화면을 캡처해 정리했습니다.
-        교육 중 참고 자료로, 또는 담당자 교체 시 인수인계 자료로 사용하세요.
-      </p>
-      <div class="meta">
-        <span><b>대상</b> 기관 관리자 · 담당자 · 부관리자</span>
-        <span><b>버전 기준</b> 2026-08-20</span>
-        <span><b>접속</b> 발급받은 관리자 계정 이메일 + 비밀번호</span>
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .toc {
+          position: static;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .toc-label {
+          display: none;
+        }
+        .toc a {
+          border: 1px solid var(--line);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="brand">기관 통합관리시스템<small>관리자 콘솔 교육 자료</small></div>
+      <div class="tabswitch" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-tab="manual">매뉴얼</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="script">교육 진행 스크립트</button>
       </div>
     </div>
 
-    <div class="layout">
-      <nav class="toc" aria-label="목차">
-        <div class="toc-label">화면 목차</div>
-        <a href="#login"><span class="badge">·</span>로그인</a>
-        <a href="#organizations"><span class="badge">1</span>기관 관리</a>
-        <a href="#programs"><span class="badge">2</span>사업단 관리</a>
-        <a href="#participants"><span class="badge">3</span>참여자 관리</a>
-        <a href="#attendance"><span class="badge">4</span>근무 관리</a>
-        <a href="#escapes"><span class="badge">5</span>안전 관제</a>
-        <a href="#disaster"><span class="badge">6</span>재난문자 발송이력</a>
-        <a href="#admins"><span class="badge">8</span>관리자 계정</a>
-        <a href="#contact"><span class="badge">9</span>문의하기</a>
-      </nav>
-
-      <main>
-
-        <section class="chapter" id="login">
-          <div class="chapter-head">
-            <div class="chapter-num">·</div>
-            <div>
-              <h2>로그인</h2>
-              <div class="sub">발급받은 관리자 계정으로 접속합니다.</div>
-            </div>
+    <div id="panel-manual">
+      <div class="shell">
+        <div class="hero">
+          <span class="eyebrow">관리자 매뉴얼</span>
+          <h1>기관 담당자를 위한<br />관리자 콘솔 사용 안내</h1>
+          <p class="lead">
+            사업단 등록부터 참여자 근태·안전 관제까지, 관리자 콘솔 왼쪽 메뉴 순서 그대로 화면을 캡처해 정리했습니다. <br />
+            교육 중 참고 자료로, 또는 담당자 교체 시 인수인계 자료로 사용하세요.
+          </p>
+          <div class="meta">
+            <span><b>대상</b> 기관 관리자 · 담당자 · 부관리자</span>
+            <span><b>버전 기준</b> 2026-08-20</span>
+            <span><b>접속</b> 발급받은 관리자 계정 이메일 + 비밀번호</span>
           </div>
-          <ul class="steps">
-            <li><span class="n">1</span><div>관리자 콘솔 주소로 접속합니다 — <span class="path">/admin</span></div></li>
-            <li><span class="n">2</span><div><b>이메일</b>과 <b>비밀번호</b>를 입력하고 <b>로그인</b>을 누릅니다.</div></li>
-            <li><span class="n">3</span><div>로그인 후 화면 오른쪽 위에 <b>세션 만료까지 남은 시간</b>이 실시간으로 표시됩니다. 만료 임박 시 화면 상단에 안내 배너가 뜨며, 시간이 지나면 자동 로그아웃되므로 작업 중이던 내용은 미리 저장하세요.</div></li>
-          </ul>
-          <div class="callout tip">
-            <span class="tag">TIP</span>
-            <p>비밀번호는 상단 바의 <b>비밀번호 변경</b> 버튼으로 언제든 바꿀 수 있습니다.</p>
-          </div>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/login</div></div>
-            <img src="img/01-login.jpg" alt="관리자 로그인 화면" />
-            <figcaption>로그인 화면 — 이메일 / 비밀번호 입력 후 로그인</figcaption>
-          </figure>
-        </section>
+        </div>
 
-        <section class="chapter" id="organizations">
-          <div class="chapter-head">
-            <div class="chapter-num">1</div>
-            <div>
-              <h2>기관 관리</h2>
-              <div class="sub">사업단이 소속되는 기관 정보를 등록하고 관리합니다.</div>
-            </div>
-          </div>
-          <p>기관명, 대표자, 전화번호, 팩스번호, 사업자등록번호, 주소, 운영 상태를 한 화면에서 확인합니다. 대부분의 경우 계약 시 서비스 운영팀이 기관 정보를 먼저 등록해 두므로, 담당자는 <b>정보가 정확한지 확인</b>하고 변경 사항이 있을 때 수정하면 됩니다.</p>
-          <ul class="steps">
-            <li><span class="n">1</span><div>오른쪽 위 <b>+ 기관 추가</b>로 새 기관을 등록합니다.</div></li>
-            <li><span class="n">2</span><div>목록의 <b>수정</b>을 눌러 기존 기관 정보를 변경합니다.</div></li>
-            <li><span class="n">3</span><div>더 이상 운영하지 않는 기관은 삭제 대신 <b>비활성화</b>로 처리합니다 — 과거 사업단·근무 기록이 보존됩니다.</div></li>
-          </ul>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/organizations</div></div>
-            <img src="img/02-organizations.jpg" alt="기관 관리 목록 화면" />
-            <figcaption>기관 관리 — 등록된 기관 목록</figcaption>
-          </figure>
-        </section>
+        <div class="layout">
+          <nav class="toc" aria-label="목차">
+            <div class="toc-label">화면 목차</div>
+            <a href="#login"><span class="badge">0</span>로그인</a>
+            <a href="#organizations"><span class="badge">1</span>기관 관리</a>
+            <a href="#programs"><span class="badge">2</span>사업단 관리</a>
+            <a href="#participants"><span class="badge">3</span>참여자 관리</a>
+            <a href="#attendance"><span class="badge">4</span>근무 관리</a>
+            <a href="#escapes"><span class="badge">5</span>안전 관제</a>
+            <a href="#disaster"><span class="badge">6</span>재난문자 발송이력</a>
+            <a href="#admins"><span class="badge">8</span>관리자 계정</a>
+            <a href="#contact"><span class="badge">9</span>문의하기</a>
+          </nav>
 
-        <section class="chapter" id="programs">
-          <div class="chapter-head">
-            <div class="chapter-num">2</div>
-            <div>
-              <h2>사업단 관리</h2>
-              <div class="sub">기관별 사업단(공익활동/역량활동 등)을 등록하고, 사업단 안에서 수요처·조·참여자를 관리합니다.</div>
-            </div>
-          </div>
-          <ul class="steps">
-            <li><span class="n">1</span><div>오른쪽 위 <b>+ 사업단 추가</b> → 기관 선택, 담당자(복수 지정 가능), 사업 유형, 사업단명, 시작일·종료일, 시작·종료 시간, 시급을 입력합니다.</div></li>
-            <li><span class="n">2</span><div>목록에서 사업단명을 눌러 <b>사업단 상세</b>로 들어가면 4개 탭이 있습니다.</div></li>
-          </ul>
+          <main>
+            <section class="chapter" id="login">
+              <div class="chapter-head">
+                <div class="chapter-num">0</div>
+                <div>
+                  <h2>로그인</h2>
+                  <div class="sub">발급받은 관리자 계정으로 접속합니다.</div>
+                </div>
+              </div>
+              <ul class="steps">
+                <li>
+                  <span class="n">1</span>
+                  <div>관리자 페이지 주소로 접속합니다 — <span class="path">/admin</span></div>
+                </li>
+                <li>
+                  <span class="n">2</span>
+                  <div><b>이메일</b>과 <b>비밀번호</b>를 입력하고 <b>로그인</b>을 누릅니다.</div>
+                </li>
+                <figure class="shot">
+                  <div class="bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="url">worksafe.co.kr/admin/login</div>
+                  </div>
+                  <img src="img/01.login.png" alt="관리자 로그인 화면" />
+                  <figcaption>로그인 화면 — 이메일 / 비밀번호 입력 후 로그인</figcaption>
+                </figure>
+                <li>
+                  <span class="n">3</span>
+                  <div>
+                    로그인 후 화면 오른쪽 위에 <b>세션 만료까지 남은 시간 (총 1시간)</b>이 실시간으로 표시됩니다. <br />
+                    만료 임박 시 화면 상단에 안내 배너가 뜨며, 연장 버튼을 클릭시 세션이 연장됩니다.
+                  </div>
+                </li>
+              </ul>
+              <div class="callout tip">
+                <span class="tag">TIP</span>
+                <p>비밀번호는 상단 바의 <b>비밀번호 변경</b> 버튼으로 언제든 바꿀 수 있습니다.</p>
+              </div>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/login</div>
+                </div>
+                <img src="img/01-1.change-password.png" alt="관리자 로그인 화면" />
+                <figcaption>관리자 화면 — 비밀번호 변경</figcaption>
+              </figure>
+            </section>
 
-          <h3 style="font-size:15px;margin:22px 0 8px;">사업단 상세 — 4개 탭</h3>
-          <table class="ref">
-            <tr><th>탭</th><th>용도</th></tr>
-            <tr><td class="role">수요처 관리</td><td>참여자가 실제 근무하는 장소(수요처)를 등록·관리합니다. 수요처별 담당자, 배정된 조, 근무시간, 활성 상태를 지정합니다.</td></tr>
-            <tr><td class="role">조 관리</td><td>오전/오후 등 근무 조를 만들고 조별 근무시간·인원을 관리합니다. 수요처에 조를 배정하면, 그 조 소속 참여자는 자동으로 해당 근무시간을 따릅니다.</td></tr>
-            <tr><td class="role">참여자 명단</td><td>이 사업단에 참여 중인 인원을 조회·검색하고, 휴무·연차·개인 스케줄·참여종료·삭제를 처리합니다.</td></tr>
-            <tr><td class="role">양식 출력</td><td>월을 선택해 <b>활동 대장</b>, <b>활동비 지급 대장</b>을 엑셀로 내려받습니다.</td></tr>
-          </table>
+            <section class="chapter" id="organizations">
+              <div class="chapter-head">
+                <div class="chapter-num">1</div>
+                <div>
+                  <h2>기관 관리</h2>
+                  <div class="sub">사업단이 소속되는 기관 정보를 등록하고 관리합니다.</div>
+                </div>
+              </div>
+              <p>
+                기관명, 대표자, 전화번호, 팩스번호, 사업자등록번호, 주소, 운영 상태를 한 화면에서 확인합니다. 대부분의 경우 계약 시 서비스
+                운영팀이 기관 정보를 먼저 등록해 두므로, 기관 관리자는 <b>정보가 정확한지 확인</b>하고 변경 사항이 있을 때 수정하면 됩니다.
+              </p>
+              <ul class="steps">
+                <li>
+                  <span class="n">1</span>
+                  <div>기관의 <b>소속 직원 / 사업단 목록 / 수요처 목록</b>을 확인할 수 있습니다.</div>
+                </li>
+              </ul>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/organizations</div>
+                </div>
+                <img src="img/02.organizations.png" alt="기관 관리 목록 화면" />
+                <figcaption>기관 관리 - 기관 정보</figcaption>
+              </figure>
+            </section>
 
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/programs</div></div>
-            <img src="img/03-programs-list.jpg" alt="사업단 관리 목록 화면" />
-            <figcaption>사업단 관리 — 기관별 사업단 목록</figcaption>
-          </figure>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/program?id=6</div></div>
-            <img src="img/04-program-detail.jpg" alt="사업단 상세 - 수요처 관리 탭" />
-            <figcaption>사업단 상세 — 수요처 관리 탭</figcaption>
-          </figure>
+            <section class="chapter" id="programs">
+              <div class="chapter-head">
+                <div class="chapter-num">2</div>
+                <div>
+                  <h2>사업단 관리</h2>
+                  <div class="sub">기관별 사업단(공익활동/역량활동 등)을 등록하고, 사업단 안에서 수요처·조·참여자를 관리합니다.</div>
+                </div>
+              </div>
+              <ul class="steps">
+                <li>
+                  <span class="n">1</span>
+                  <div>
+                    오른쪽 위 <b>+ 사업단 추가</b> → 기관 선택, 담당자(복수 지정 가능), 사업 유형, 사업단명, 시작일·종료일, 시작·종료 시간,
+                    시급을 입력합니다.
+                  </div>
+                </li>
+                <li>
+                  <span class="n">2</span>
+                  <div>목록에서 사업단명을 눌러 <b>사업단 상세</b>로 들어가면 4개 탭이 있습니다.</div>
+                </li>
+              </ul>
 
-          <div class="callout warn">
-            <span class="tag">주의</span>
-            <p>참여자를 조에 배정하려면 먼저 그 조가 <b>수요처에 배정</b>되어 있어야 합니다. 순서: 수요처 등록 → 조 등록 및 수요처 배정 → 참여자 등록 시 수요처·조 선택.</p>
-          </div>
-        </section>
+              <h3 style="font-size: 15px; margin: 22px 0 8px">사업단 상세 — 4개 탭</h3>
+              <table class="ref">
+                <tr>
+                  <th>탭</th>
+                  <th>용도</th>
+                </tr>
+                <tr>
+                  <td class="role">수요처 관리</td>
+                  <td>
+                    참여자가 실제 근무하는 장소(수요처)를 등록·관리합니다. 수요처별 담당자, 배정된 조, 근무시간, 활성 상태를 지정합니다.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="role">조 관리</td>
+                  <td>
+                    오전/오후 등 근무 조를 만들고 조별 근무시간·인원을 관리합니다. 수요처에 조를 배정하면, 그 조 소속 참여자는 자동으로 해당
+                    근무시간을 따릅니다.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="role">참여자 명단</td>
+                  <td>이 사업단에 참여 중인 인원을 조회·검색하고, 휴무·연차·개인 스케줄·참여종료·삭제를 처리합니다.</td>
+                </tr>
+                <tr>
+                  <td class="role">양식 출력</td>
+                  <td>월을 선택해 <b>활동 대장</b>, <b>활동비 지급 대장</b>을 엑셀로 내려받습니다.</td>
+                </tr>
+              </table>
 
-        <section class="chapter" id="participants">
-          <div class="chapter-head">
-            <div class="chapter-num">3</div>
-            <div>
-              <h2>참여자 관리</h2>
-              <div class="sub">전체 사업단의 참여자를 통합 조회합니다. 참여자를 새로 등록할 때는 사업단 상세의 참여자 명단 탭에서 진행합니다.</div>
-            </div>
-          </div>
-          <ul class="steps">
-            <li><span class="n">1</span><div>사업단 상세 → <b>참여자 명단</b> 탭 → <b>+ 참여자 추가</b>. 엑셀 <b>양식 다운로드</b> 후 여러 명을 한 번에 업로드하거나, 이름·성별·수요처·조를 <b>직접 입력</b>해 한 명씩 등록합니다.</div></li>
-            <li><span class="n">2</span><div>동명이인이 있으면 이름 뒤에 숫자를 붙여 구분합니다 (예: 홍길동1, 홍길동2).</div></li>
-            <li><span class="n">3</span><div>이 화면(참여자 관리)에서는 유형·사업단·수요처·이름으로 <b>전체를 가로질러 검색</b>할 수 있습니다.</div></li>
-            <li><span class="n">4</span><div>이름을 누르면 <b>참여자 상세</b>로 이동해 근무 이력·휴가 이력·급여 관련 설정을 확인합니다.</div></li>
-          </ul>
-          <div class="callout warn">
-            <span class="tag">주의</span>
-            <p>참여자 명단의 <b>삭제</b>는 되돌릴 수 없습니다. 일시적으로 근무를 쉬는 경우는 삭제 대신 <b>휴무</b> 또는 <b>연차</b>, 사업단을 완전히 그만둔 경우는 <b>참여종료</b>를 사용하세요.</p>
-          </div>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/program?id=6</div></div>
-            <img src="img/05-participant-add-modal.jpg" alt="참여자 추가 패널" />
-            <figcaption>참여자 추가 패널 — 엑셀 일괄 등록 또는 직접 입력</figcaption>
-          </figure>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/participants</div></div>
-            <img src="img/06-participants-list.jpg" alt="참여자 관리 통합 목록" />
-            <figcaption>참여자 관리 — 전체 사업단 통합 조회</figcaption>
-          </figure>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/participant?id=10</div></div>
-            <img src="img/07-participant-detail.jpg" alt="참여자 상세 - 근무 이력" />
-            <figcaption>참여자 상세 — 근무 이력 · 휴가 이력 · 급여 관련 설정</figcaption>
-          </figure>
-        </section>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/programs</div>
+                </div>
+                <img src="img/03-programs-list.jpg" alt="사업단 관리 목록 화면" />
+                <figcaption>사업단 관리 — 기관별 사업단 목록</figcaption>
+              </figure>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/program?id=6</div>
+                </div>
+                <img src="img/04-program-detail.jpg" alt="사업단 상세 - 수요처 관리 탭" />
+                <figcaption>사업단 상세 — 수요처 관리 탭</figcaption>
+              </figure>
 
-        <section class="chapter" id="attendance">
-          <div class="chapter-head">
-            <div class="chapter-num">4</div>
-            <div>
-              <h2>근무 관리</h2>
-              <div class="sub">사업단을 선택하면 그 사업단 참여자들의 근무 · 교육 · 휴가 현황을 확인합니다.</div>
-            </div>
-          </div>
-          <table class="ref">
-            <tr><th>탭</th><th>내용</th></tr>
-            <tr><td class="role">근무</td><td>일자별 출근·퇴근 시각, 근무 위치(등록된 구역 안/밖 및 거리), 근무시간(분), 정상·지각·조퇴 상태를 확인합니다. 개별 기록은 <b>수정</b>, 잘못 찍힌 기록은 <b>무효화</b>할 수 있습니다.</td></tr>
-            <tr><td class="role">교육</td><td>필수/선택 교육을 등록하고(교육 정의), 참여자별 이수 현황·필수교육 이행 현황을 확인합니다.</td></tr>
-            <tr><td class="role">휴가 현황</td><td>이달의 휴가 건수, 유급/무급 구분, 총 휴가일수와 참여자별 휴가 이력을 확인합니다.</td></tr>
-          </table>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/attendance</div></div>
-            <img src="img/08-attendance.jpg" alt="근무 관리 - 근무 탭" />
-            <figcaption>근무 관리 — 근무 탭 (정상·지각·조퇴 통계와 일자별 상세)</figcaption>
-          </figure>
-          <div class="callout tip">
-            <span class="tag">TIP</span>
-            <p>위치 열에 빨간색으로 거리(예: 19.9km)가 표시되면 등록된 근무 구역을 벗어나 출·퇴근을 찍은 경우입니다. 사유를 확인한 뒤 필요하면 기록을 수정하세요.</p>
-          </div>
-        </section>
+              <div class="callout warn">
+                <span class="tag">주의</span>
+                <p>
+                  참여자를 조에 배정하려면 먼저 그 조가 <b>수요처에 배정</b>되어 있어야 합니다. 순서: 수요처 등록 → 조 등록 및 수요처 배정 →
+                  참여자 등록 시 수요처·조 선택.
+                </p>
+              </div>
+            </section>
 
-        <section class="chapter" id="escapes">
-          <div class="chapter-head">
-            <div class="chapter-num">5</div>
-            <div>
-              <h2>안전 관제</h2>
-              <div class="sub">사업단의 근무 구역과 참여자의 실시간 위치를 지도로 확인하고, 구역 이탈을 단계별로 관제합니다.</div>
-            </div>
-          </div>
-          <ul class="steps">
-            <li><span class="n">1</span><div>조회할 <b>사업단</b>을 선택하면 근무 구역(점선 경계)과 참여자 위치가 지도에 표시됩니다.</div></li>
-            <li><span class="n">2</span><div>이탈 정도에 따라 <b>정상(초록) → 1단계 → 2단계 → 3단계(빨강)</b> 순으로 표시됩니다.</div></li>
-            <li><span class="n">3</span><div>오른쪽 패널에서 감지 시각·참여자명·이탈 거리·단계를 확인하고, <b>확인 필요</b> 항목을 우선 처리합니다.</div></li>
-          </ul>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/escapes</div></div>
-            <img src="img/09-escapes-map.jpg" alt="안전 관제 지도" />
-            <figcaption>안전 관제 — 근무 구역 및 참여자 위치 지도</figcaption>
-          </figure>
-        </section>
+            <section class="chapter" id="participants">
+              <div class="chapter-head">
+                <div class="chapter-num">3</div>
+                <div>
+                  <h2>참여자 관리</h2>
+                  <div class="sub">
+                    전체 사업단의 참여자를 통합 조회합니다. 참여자를 새로 등록할 때는 사업단 상세의 참여자 명단 탭에서 진행합니다.
+                  </div>
+                </div>
+              </div>
+              <ul class="steps">
+                <li>
+                  <span class="n">1</span>
+                  <div>
+                    사업단 상세 → <b>참여자 명단</b> 탭 → <b>+ 참여자 추가</b>. 엑셀 <b>양식 다운로드</b> 후 여러 명을 한 번에 업로드하거나,
+                    이름·성별·수요처·조를 <b>직접 입력</b>해 한 명씩 등록합니다.
+                  </div>
+                </li>
+                <li>
+                  <span class="n">2</span>
+                  <div>동명이인이 있으면 이름 뒤에 숫자를 붙여 구분합니다 (예: 홍길동1, 홍길동2).</div>
+                </li>
+                <li>
+                  <span class="n">3</span>
+                  <div>이 화면(참여자 관리)에서는 유형·사업단·수요처·이름으로 <b>전체를 가로질러 검색</b>할 수 있습니다.</div>
+                </li>
+                <li>
+                  <span class="n">4</span>
+                  <div>이름을 누르면 <b>참여자 상세</b>로 이동해 근무 이력·휴가 이력·급여 관련 설정을 확인합니다.</div>
+                </li>
+              </ul>
+              <div class="callout warn">
+                <span class="tag">주의</span>
+                <p>
+                  참여자 명단의 <b>삭제</b>는 되돌릴 수 없습니다. 일시적으로 근무를 쉬는 경우는 삭제 대신 <b>휴무</b> 또는 <b>연차</b>,
+                  사업단을 완전히 그만둔 경우는 <b>참여종료</b>를 사용하세요.
+                </p>
+              </div>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/program?id=6</div>
+                </div>
+                <img src="img/05-participant-add-modal.jpg" alt="참여자 추가 패널" />
+                <figcaption>참여자 추가 패널 — 엑셀 일괄 등록 또는 직접 입력</figcaption>
+              </figure>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/participants</div>
+                </div>
+                <img src="img/06-participants-list.jpg" alt="참여자 관리 통합 목록" />
+                <figcaption>참여자 관리 — 전체 사업단 통합 조회</figcaption>
+              </figure>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/participant?id=10</div>
+                </div>
+                <img src="img/07-participant-detail.jpg" alt="참여자 상세 - 근무 이력" />
+                <figcaption>참여자 상세 — 근무 이력 · 휴가 이력 · 급여 관련 설정</figcaption>
+              </figure>
+            </section>
 
-        <section class="chapter" id="disaster">
-          <div class="chapter-head">
-            <div class="chapter-num">6</div>
-            <div>
-              <h2>재난문자 발송이력</h2>
-              <div class="sub">참여자에게 실제로 발송이 시도된 행안부 재난문자 이력만 표시됩니다.</div>
-            </div>
-          </div>
-          <p>발송 시각, 지역, 종류, 내용, 대상 인원, 성공/실패 여부를 조회합니다. 근무지역·근무시간 조건에 해당하는 재난문자만 자동으로 발송되므로 별도로 조작할 항목은 없고, <b>발송이 잘 되고 있는지 확인하는 용도</b>로 사용합니다.</p>
-        </section>
+            <section class="chapter" id="attendance">
+              <div class="chapter-head">
+                <div class="chapter-num">4</div>
+                <div>
+                  <h2>근무 관리</h2>
+                  <div class="sub">사업단을 선택하면 그 사업단 참여자들의 근무 · 교육 · 휴가 현황을 확인합니다.</div>
+                </div>
+              </div>
+              <table class="ref">
+                <tr>
+                  <th>탭</th>
+                  <th>내용</th>
+                </tr>
+                <tr>
+                  <td class="role">근무</td>
+                  <td>
+                    일자별 출근·퇴근 시각, 근무 위치(등록된 구역 안/밖 및 거리), 근무시간(분), 정상·지각·조퇴 상태를 확인합니다. 개별 기록은
+                    <b>수정</b>, 잘못 찍힌 기록은 <b>무효화</b>할 수 있습니다.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="role">교육</td>
+                  <td>필수/선택 교육을 등록하고(교육 정의), 참여자별 이수 현황·필수교육 이행 현황을 확인합니다.</td>
+                </tr>
+                <tr>
+                  <td class="role">휴가 현황</td>
+                  <td>이달의 휴가 건수, 유급/무급 구분, 총 휴가일수와 참여자별 휴가 이력을 확인합니다.</td>
+                </tr>
+              </table>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/attendance</div>
+                </div>
+                <img src="img/08-attendance.jpg" alt="근무 관리 - 근무 탭" />
+                <figcaption>근무 관리 — 근무 탭 (정상·지각·조퇴 통계와 일자별 상세)</figcaption>
+              </figure>
+              <div class="callout tip">
+                <span class="tag">TIP</span>
+                <p>
+                  위치 열에 빨간색으로 거리(예: 19.9km)가 표시되면 등록된 근무 구역을 벗어나 출·퇴근을 찍은 경우입니다. 사유를 확인한 뒤
+                  필요하면 기록을 수정하세요.
+                </p>
+              </div>
+            </section>
 
-        <section class="chapter" id="admins">
-          <div class="chapter-head">
-            <div class="chapter-num">8</div>
-            <div>
-              <h2>관리자 계정</h2>
-              <div class="sub">기관 소속 담당자·부관리자 계정을 기관 관리자가 직접 발급하고 관리합니다.</div>
-            </div>
-          </div>
-          <table class="ref">
-            <tr><th>역할</th><th>권한</th></tr>
-            <tr><td class="role"><span class="pill super">서비스 총괄 관리자</span></td><td>전체 기관·사업단 관리 (서비스 운영팀)</td></tr>
-            <tr><td class="role"><span class="pill org">기관 관리자</span></td><td>소속 기관의 모든 사업단·참여자·관리자 계정 관리</td></tr>
-            <tr><td class="role"><span class="pill staff">담당자 / 부관리자</span></td><td>배정된 사업단 범위 내 업무 처리. 담당자 교체 시 <b>담당 이관</b>으로 맡은 사업단을 다른 계정에 넘길 수 있습니다.</td></tr>
-          </table>
-          <ul class="steps">
-            <li><span class="n">1</span><div>오른쪽 위 <b>+ 관리자 계정 발급</b> → 이메일(로그인 계정), 임시 비밀번호(8자 이상), 소속 기관, 역할, 이름을 입력합니다.</div></li>
-            <li><span class="n">2</span><div>발급된 임시 비밀번호는 담당자에게 직접 전달하세요. 담당자는 로그인 후 <b>비밀번호 변경</b>으로 바꿀 수 있습니다.</div></li>
-            <li><span class="n">3</span><div>퇴사·담당 변경 시 <b>비활성화</b> 또는 <b>비밀번호 재설정</b>으로 계정을 정리합니다.</div></li>
-          </ul>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/admins</div></div>
-            <img src="img/10-admins-list.jpg" alt="관리자 계정 목록" />
-            <figcaption>관리자 계정 — 소속 기관 계정 목록</figcaption>
-          </figure>
-          <figure class="shot">
-            <div class="bar"><div class="dots"><span></span><span></span><span></span></div><div class="url">worksafe.co.kr/admin/admins</div></div>
-            <img src="img/11-admin-invite-modal.jpg" alt="관리자 계정 발급 패널" />
-            <figcaption>관리자 계정 발급 패널</figcaption>
-          </figure>
-        </section>
+            <section class="chapter" id="escapes">
+              <div class="chapter-head">
+                <div class="chapter-num">5</div>
+                <div>
+                  <h2>안전 관제</h2>
+                  <div class="sub">사업단의 근무 구역과 참여자의 실시간 위치를 지도로 확인하고, 구역 이탈을 단계별로 관제합니다.</div>
+                </div>
+              </div>
+              <ul class="steps">
+                <li>
+                  <span class="n">1</span>
+                  <div>조회할 <b>사업단</b>을 선택하면 근무 구역(점선 경계)과 참여자 위치가 지도에 표시됩니다.</div>
+                </li>
+                <li>
+                  <span class="n">2</span>
+                  <div>이탈 정도에 따라 <b>정상(초록) → 1단계 → 2단계 → 3단계(빨강)</b> 순으로 표시됩니다.</div>
+                </li>
+                <li>
+                  <span class="n">3</span>
+                  <div>오른쪽 패널에서 감지 시각·참여자명·이탈 거리·단계를 확인하고, <b>확인 필요</b> 항목을 우선 처리합니다.</div>
+                </li>
+              </ul>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/escapes</div>
+                </div>
+                <img src="img/09-escapes-map.jpg" alt="안전 관제 지도" />
+                <figcaption>안전 관제 — 근무 구역 및 참여자 위치 지도</figcaption>
+              </figure>
+            </section>
 
-        <section class="chapter" id="contact">
-          <div class="chapter-head">
-            <div class="chapter-num">9</div>
-            <div>
-              <h2>문의하기</h2>
-              <div class="sub">버그 신고, 기능 문의, 개선 제안을 접수합니다.</div>
-            </div>
-          </div>
-          <p>화면 왼쪽 메뉴 맨 아래 <b>문의하기</b>에서 담당 이메일로 바로 연락할 수 있습니다. 오류가 발생했다면 <b>화면 캡처를 함께 보내주시면</b> 원인 확인이 훨씬 빨라집니다.</p>
-        </section>
+            <section class="chapter" id="disaster">
+              <div class="chapter-head">
+                <div class="chapter-num">6</div>
+                <div>
+                  <h2>재난문자 발송이력</h2>
+                  <div class="sub">참여자에게 실제로 발송이 시도된 행안부 재난문자 이력만 표시됩니다.</div>
+                </div>
+              </div>
+              <p>
+                발송 시각, 지역, 종류, 내용, 대상 인원, 성공/실패 여부를 조회합니다. 근무지역·근무시간 조건에 해당하는 재난문자만 자동으로
+                발송되므로 별도로 조작할 항목은 없고, <b>발송이 잘 되고 있는지 확인하는 용도</b>로 사용합니다.
+              </p>
+            </section>
 
-      </main>
+            <section class="chapter" id="admins">
+              <div class="chapter-head">
+                <div class="chapter-num">8</div>
+                <div>
+                  <h2>관리자 계정</h2>
+                  <div class="sub">기관 소속 담당자·부관리자 계정을 <b>기관 관리자</b>가 직접 발급하고 관리합니다.</div>
+                </div>
+              </div>
+              <table class="ref">
+                <tr>
+                  <th>역할</th>
+                  <th>권한</th>
+                </tr>
+                <!-- <tr>
+                  <td class="role"><span class="pill super">서비스 총괄 관리자</span></td>
+                  <td>전체 기관·사업단 관리 (서비스 운영팀)</td>
+                </tr> -->
+                <tr>
+                  <td class="role"><span class="pill org">기관 관리자</span></td>
+                  <td>소속 기관의 모든 사업단·참여자·관리자 계정 관리</td>
+                </tr>
+                <tr>
+                  <td class="role"><span class="pill staff">담당자 / 부관리자</span></td>
+                  <td>배정된 사업단 범위 내 업무 처리. 담당자 교체 시 <b>담당 이관</b>으로 맡은 사업단을 다른 계정에 넘길 수 있습니다.</td>
+                </tr>
+              </table>
+              <ul class="steps">
+                <li>
+                  <span class="n">1</span>
+                  <div>
+                    오른쪽 위 <b>+ 관리자 계정 발급</b> → 이메일(로그인 계정), 임시 비밀번호(8자 이상), 소속 기관, 역할, 이름을 입력합니다.
+                  </div>
+                </li>
+                <li>
+                  <span class="n">2</span>
+                  <div>
+                    발급된 임시 비밀번호는 담당자에게 직접 전달하세요. 담당자는 로그인 후 <b>비밀번호 변경</b>으로 바꿀 수 있습니다.
+                  </div>
+                </li>
+                <li>
+                  <span class="n">3</span>
+                  <div>
+                    퇴사 시 <b>비활성화</b>하여 계정을 정리합니다. <br />
+                    - 비활성화하기 전에 해당 담당자가 담당한 사업단을 다른 담당자에게 <b>이관</b>해야 합니다.
+                  </div>
+                </li>
+                <li>
+                  <span class="n">4</span>
+                  <div>사업단을 이관할 때에는, <b>담당 이관</b> 버튼을 눌러 진행합니다.</div>
+                </li>
+              </ul>
+              <div class="callout warn">
+                <span class="tag">담당 이관 규칙</span>
+                <p>
+                  사업단은 한 사람에게 또는 여러 담당자에게 나눠서 이관할 수 있지만,
+                  <b>맡고 있던 사업단 전부를 빠짐없이</b> 배정해야 합니다.<br />
+                  - 담당 사업단이 하나라도 남아 있으면 계정을 비활성화할 수 없으니, 반드시 이관을 먼저 진행해야 합니다. <br />이관하면 그
+                  사업단에 속한 수요처의 담당자 표시도 함께 자동으로 바뀝니다. 수요처 담당자 변경은 선택 사항입니다.
+                </p>
+              </div>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/admins</div>
+                </div>
+                <img src="img/10.admins-list.png" alt="관리자 계정 목록" />
+                <figcaption>관리자 계정 — 소속 기관 계정 목록</figcaption>
+              </figure>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/admins</div>
+                </div>
+                <img src="img/10-1.admin-add-modal.png" alt="관리자 계정 발급 패널" />
+                <figcaption>관리자 계정 발급 패널</figcaption>
+              </figure>
+            </section>
+
+            <section class="chapter" id="contact">
+              <div class="chapter-head">
+                <div class="chapter-num">9</div>
+                <div>
+                  <h2>문의하기</h2>
+                  <div class="sub">버그 신고, 기능 문의, 개선 제안을 접수합니다.</div>
+                </div>
+              </div>
+              <p>
+                화면 왼쪽 메뉴 맨 아래 <b>문의하기</b>에서 담당 이메일로 바로 연락할 수 있습니다. 오류가 발생했다면
+                <b>화면 캡처를 함께 보내주시면</b> 원인 확인이 훨씬 빨라집니다.
+              </p>
+            </section>
+          </main>
+        </div>
+      </div>
+      <footer class="pagefoot">기관 통합관리시스템 관리자 매뉴얼 · 내부 교육용 자료 · 문의: 시스템 내 <b>문의하기</b> 메뉴</footer>
     </div>
-  </div>
-  <footer class="pagefoot">기관 통합관리시스템 관리자 매뉴얼 · 내부 교육용 자료 · 문의: 시스템 내 <b>문의하기</b> 메뉴</footer>
-</div>
 
-<div id="panel-script" hidden>
-  <div class="shell script-wrap">
-    <div class="hero" style="padding-top:44px;">
-      <span class="eyebrow">진행자용</span>
-      <h1>대면 교육 진행 스크립트</h1>
-      <p class="lead">관련 기관 실무 담당자에게 관리자 콘솔 핵심 업무를 직접 실습시키는 60분 세션 기준 진행안입니다. 인원·숙련도에 따라 타임박스를 조정하세요.</p>
+    <div id="panel-script" hidden>
+      <div class="shell script-wrap">
+        <div class="hero" style="padding-top: 44px">
+          <span class="eyebrow">진행자용</span>
+          <h1>대면 교육 진행 스크립트</h1>
+          <p class="lead">
+            관련 기관 실무 담당자에게 관리자 콘솔 핵심 업무를 직접 실습시키는 60분 세션 기준 진행안입니다. 인원·숙련도에 따라 타임박스를
+            조정하세요.
+          </p>
+        </div>
+
+        <h2>세션 개요</h2>
+        <table class="runsheet">
+          <tr>
+            <th>항목</th>
+            <th>내용</th>
+          </tr>
+          <tr>
+            <td class="topic">목표</td>
+            <td>세션이 끝나면 참가자 스스로 사업단 등록, 참여자 등록/관리, 근무·안전 관제 확인, 계정 관리를 할 수 있다.</td>
+          </tr>
+          <tr>
+            <td class="topic">대상</td>
+            <td>신규 계약 기관의 기관 관리자 / 담당자</td>
+          </tr>
+          <tr>
+            <td class="topic">소요 시간</td>
+            <td>60분 (실습 위주, Q&amp;A 포함)</td>
+          </tr>
+          <tr>
+            <td class="topic">사전 준비</td>
+            <td>참가자별 관리자 계정 미리 발급 · 테스트용 사업단 1개 세팅 · 화면 공유 또는 빔프로젝터 · 본 매뉴얼 링크 공유</td>
+          </tr>
+        </table>
+
+        <div class="note-strip">
+          진행 원칙: <b>설명 → 직접 시연 → 참가자가 따라서 실습</b> 순서를 각 화면마다 반복합니다. 실습 없이 설명만 하면 교육 후 재문의가
+          늘어납니다.
+        </div>
+
+        <h2>타임라인</h2>
+        <table class="runsheet">
+          <tr>
+            <th>시간</th>
+            <th>주제</th>
+            <th>진행 포인트</th>
+          </tr>
+          <tr>
+            <td class="time">0–5분</td>
+            <td class="topic">인사 · 전체 구조 소개</td>
+            <td>왼쪽 메뉴 8개 항목을 훑으며 "사업단 → 참여자 → 근무/안전"으로 이어지는 데이터 흐름을 먼저 그림으로 설명합니다.</td>
+          </tr>
+          <tr>
+            <td class="time">5–15분</td>
+            <td class="topic">로그인 · 기관정보 · 사업단 등록</td>
+            <td>발급된 계정으로 직접 로그인시키고, 세션 만료 표시를 짚어줍니다. 이어서 사업단 1개를 함께 등록합니다.</td>
+          </tr>
+          <tr>
+            <td class="time">15–30분</td>
+            <td class="topic">참여자 등록 · 수요처/조 배정</td>
+            <td>
+              수요처 → 조 → 참여자 순서를 강조. 엑셀 일괄 등록과 직접 입력 두 방법을 모두 보여준 뒤, 참가자가 본인 참여자 1명을 직접
+              등록해보게 합니다.
+            </td>
+          </tr>
+          <tr>
+            <td class="time">30–40분</td>
+            <td class="topic">근무 관리 읽는 법</td>
+            <td>정상/지각/조퇴 통계 카드, 위치 이탈 표시(빨간 거리)의 의미, 근무 기록 수정/무효화 절차를 설명합니다.</td>
+          </tr>
+          <tr>
+            <td class="time">40–48분</td>
+            <td class="topic">안전 관제</td>
+            <td>이탈 단계 색상(정상→1→2→3단계)의 의미와, 3단계 발생 시 실제로 취해야 할 조치(연락 → 확인 처리)를 안내합니다.</td>
+          </tr>
+          <tr>
+            <td class="time">48–55분</td>
+            <td class="topic">관리자 계정 · 문의 채널</td>
+            <td>담당자가 바뀔 때를 대비해 계정 발급·담당 이관 방법을 안내하고, 문의하기 메뉴 사용법을 안내합니다.</td>
+          </tr>
+          <tr>
+            <td class="time">55–60분</td>
+            <td class="topic">Q&amp;A · 마무리</td>
+            <td>자주 나오는 질문(아래 FAQ)에 답하고, 이 매뉴얼 링크를 다시 한번 공유합니다.</td>
+          </tr>
+        </table>
+
+        <h2>자주 나오는 질문</h2>
+        <div class="faq">
+          <details>
+            <summary>비밀번호를 잊어버리면 어떻게 하나요?</summary>
+            <p>
+              본인이 재설정할 수 없으므로, 소속 기관의 기관 관리자에게 <b>비밀번호 재설정</b>을 요청하거나, 기관 관리자 본인이라면 서비스
+              운영팀에 문의하기로 요청합니다.
+            </p>
+          </details>
+          <details>
+            <summary>참여자가 사업단을 그만두면 어떻게 처리하나요?</summary>
+            <p>참여자 명단에서 <b>참여종료</b>를 사용합니다. 삭제는 기록이 완전히 사라지므로 사용하지 않습니다.</p>
+          </details>
+          <details>
+            <summary>출근 기록이 잘못 찍혔어요. 고칠 수 있나요?</summary>
+            <p>근무 관리 화면의 해당 기록에서 <b>수정</b>으로 시각·상태를 바로잡거나, 잘못된 기록 자체를 <b>무효화</b>할 수 있습니다.</p>
+          </details>
+          <details>
+            <summary>엑셀로 참여자를 등록했는데 실패했어요.</summary>
+            <p>
+              반드시 화면에서 제공하는 <b>양식 다운로드</b>로 받은 파일에 입력해야 합니다. 다른 양식이나 열 순서를 바꾼 파일은 인식되지
+              않습니다.
+            </p>
+          </details>
+          <details>
+            <summary>담당자가 여러 사업단을 동시에 맡을 수 있나요?</summary>
+            <p>가능합니다. 사업단 등록 시 담당자를 복수로 지정할 수 있고, 관리자 계정 쪽에서도 여러 사업단을 배정받을 수 있습니다.</p>
+          </details>
+        </div>
+
+        <h2>교육 종료 체크리스트</h2>
+        <ul class="checklist">
+          <li>참가자 전원이 본인 계정으로 로그인에 성공했다</li>
+          <li>참가자가 사업단 1개를 직접 등록해봤다</li>
+          <li>참가자가 참여자 1명을 직접 등록해봤다 (수요처·조 배정 포함)</li>
+          <li>근무 관리 · 안전 관제 화면을 함께 열어봤다</li>
+          <li>관리자 계정 발급 방법과 문의하기 메뉴 위치를 안내했다</li>
+          <li>본 매뉴얼 링크와 문의 채널을 공유했다</li>
+        </ul>
+      </div>
+      <footer class="pagefoot">교육 진행 스크립트 · 진행자 참고용</footer>
     </div>
 
-    <h2>세션 개요</h2>
-    <table class="runsheet">
-      <tr><th>항목</th><th>내용</th></tr>
-      <tr><td class="topic">목표</td><td>세션이 끝나면 참가자 스스로 사업단 등록, 참여자 등록/관리, 근무·안전 관제 확인, 계정 관리를 할 수 있다.</td></tr>
-      <tr><td class="topic">대상</td><td>신규 계약 기관의 기관 관리자 / 담당자</td></tr>
-      <tr><td class="topic">소요 시간</td><td>60분 (실습 위주, Q&amp;A 포함)</td></tr>
-      <tr><td class="topic">사전 준비</td><td>참가자별 관리자 계정 미리 발급 · 테스트용 사업단 1개 세팅 · 화면 공유 또는 빔프로젝터 · 본 매뉴얼 링크 공유</td></tr>
-    </table>
-
-    <div class="note-strip">
-      진행 원칙: <b>설명 → 직접 시연 → 참가자가 따라서 실습</b> 순서를 각 화면마다 반복합니다. 실습 없이 설명만 하면 교육 후 재문의가 늘어납니다.
-    </div>
-
-    <h2>타임라인</h2>
-    <table class="runsheet">
-      <tr><th>시간</th><th>주제</th><th>진행 포인트</th></tr>
-      <tr><td class="time">0–5분</td><td class="topic">인사 · 전체 구조 소개</td><td>왼쪽 메뉴 8개 항목을 훑으며 "사업단 → 참여자 → 근무/안전"으로 이어지는 데이터 흐름을 먼저 그림으로 설명합니다.</td></tr>
-      <tr><td class="time">5–15분</td><td class="topic">로그인 · 기관정보 · 사업단 등록</td><td>발급된 계정으로 직접 로그인시키고, 세션 만료 표시를 짚어줍니다. 이어서 사업단 1개를 함께 등록합니다.</td></tr>
-      <tr><td class="time">15–30분</td><td class="topic">참여자 등록 · 수요처/조 배정</td><td>수요처 → 조 → 참여자 순서를 강조. 엑셀 일괄 등록과 직접 입력 두 방법을 모두 보여준 뒤, 참가자가 본인 참여자 1명을 직접 등록해보게 합니다.</td></tr>
-      <tr><td class="time">30–40분</td><td class="topic">근무 관리 읽는 법</td><td>정상/지각/조퇴 통계 카드, 위치 이탈 표시(빨간 거리)의 의미, 근무 기록 수정/무효화 절차를 설명합니다.</td></tr>
-      <tr><td class="time">40–48분</td><td class="topic">안전 관제</td><td>이탈 단계 색상(정상→1→2→3단계)의 의미와, 3단계 발생 시 실제로 취해야 할 조치(연락 → 확인 처리)를 안내합니다.</td></tr>
-      <tr><td class="time">48–55분</td><td class="topic">관리자 계정 · 문의 채널</td><td>담당자가 바뀔 때를 대비해 계정 발급·담당 이관 방법을 안내하고, 문의하기 메뉴 사용법을 안내합니다.</td></tr>
-      <tr><td class="time">55–60분</td><td class="topic">Q&amp;A · 마무리</td><td>자주 나오는 질문(아래 FAQ)에 답하고, 이 매뉴얼 링크를 다시 한번 공유합니다.</td></tr>
-    </table>
-
-    <h2>자주 나오는 질문</h2>
-    <div class="faq">
-      <details>
-        <summary>비밀번호를 잊어버리면 어떻게 하나요?</summary>
-        <p>본인이 재설정할 수 없으므로, 소속 기관의 기관 관리자에게 <b>비밀번호 재설정</b>을 요청하거나, 기관 관리자 본인이라면 서비스 운영팀에 문의하기로 요청합니다.</p>
-      </details>
-      <details>
-        <summary>참여자가 사업단을 그만두면 어떻게 처리하나요?</summary>
-        <p>참여자 명단에서 <b>참여종료</b>를 사용합니다. 삭제는 기록이 완전히 사라지므로 사용하지 않습니다.</p>
-      </details>
-      <details>
-        <summary>출근 기록이 잘못 찍혔어요. 고칠 수 있나요?</summary>
-        <p>근무 관리 화면의 해당 기록에서 <b>수정</b>으로 시각·상태를 바로잡거나, 잘못된 기록 자체를 <b>무효화</b>할 수 있습니다.</p>
-      </details>
-      <details>
-        <summary>엑셀로 참여자를 등록했는데 실패했어요.</summary>
-        <p>반드시 화면에서 제공하는 <b>양식 다운로드</b>로 받은 파일에 입력해야 합니다. 다른 양식이나 열 순서를 바꾼 파일은 인식되지 않습니다.</p>
-      </details>
-      <details>
-        <summary>담당자가 여러 사업단을 동시에 맡을 수 있나요?</summary>
-        <p>가능합니다. 사업단 등록 시 담당자를 복수로 지정할 수 있고, 관리자 계정 쪽에서도 여러 사업단을 배정받을 수 있습니다.</p>
-      </details>
-    </div>
-
-    <h2>교육 종료 체크리스트</h2>
-    <ul class="checklist">
-      <li>참가자 전원이 본인 계정으로 로그인에 성공했다</li>
-      <li>참가자가 사업단 1개를 직접 등록해봤다</li>
-      <li>참가자가 참여자 1명을 직접 등록해봤다 (수요처·조 배정 포함)</li>
-      <li>근무 관리 · 안전 관제 화면을 함께 열어봤다</li>
-      <li>관리자 계정 발급 방법과 문의하기 메뉴 위치를 안내했다</li>
-      <li>본 매뉴얼 링크와 문의 채널을 공유했다</li>
-    </ul>
-  </div>
-  <footer class="pagefoot">교육 진행 스크립트 · 진행자 참고용</footer>
-</div>
-
-<script>
-  (function () {
-    var buttons = document.querySelectorAll(".tabswitch button");
-    var panels = {
-      manual: document.getElementById("panel-manual"),
-      script: document.getElementById("panel-script"),
-    };
-    buttons.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var target = btn.getAttribute("data-tab");
-        buttons.forEach(function (b) { b.setAttribute("aria-selected", String(b === btn)); });
-        Object.keys(panels).forEach(function (key) {
-          panels[key].hidden = key !== target;
+    <script>
+      (function () {
+        var buttons = document.querySelectorAll(".tabswitch button");
+        var panels = {
+          manual: document.getElementById("panel-manual"),
+          script: document.getElementById("panel-script"),
+        };
+        buttons.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var target = btn.getAttribute("data-tab");
+            buttons.forEach(function (b) {
+              b.setAttribute("aria-selected", String(b === btn));
+            });
+            Object.keys(panels).forEach(function (key) {
+              panels[key].hidden = key !== target;
+            });
+            window.scrollTo({ top: 0, behavior: "instant" });
+          });
         });
-        window.scrollTo({ top: 0, behavior: "instant" });
-      });
-    });
-  })();
-</script>
-
-</body>
+      })();
+    </script>
+  </body>
 </html>
