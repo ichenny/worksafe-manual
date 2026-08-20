@@ -307,7 +307,7 @@
       .chapter-head .sub {
         color: var(--ink-muted);
         font-size: 14px;
-        max-width: 60ch;
+        max-width: 65ch;
       }
 
       .steps {
@@ -670,13 +670,14 @@
             교육 중 참고 자료로, 또는 담당자 교체 시 인수인계 자료로 사용하세요.
           </p>
           <div class="meta">
-            <span><b>대상</b> 기관 관리자 · 담당자 · 부관리자</span>
+            <span><b>대상</b> 기관 관리자 · 부관리자 · 담당자 </span>
             <span><b>버전 기준</b> 2026-08-20</span>
             <span><b>접속</b> 발급받은 관리자 계정 이메일 + 비밀번호</span>
           </div>
         </div>
 
         <div class="layout">
+          <!-- 목차 -->
           <nav class="toc" aria-label="목차">
             <div class="toc-label">화면 목차</div>
             <a href="#login"><span class="badge">0</span>로그인</a>
@@ -691,6 +692,7 @@
           </nav>
 
           <main>
+            <!-- 로그인 -->
             <section class="chapter" id="login">
               <div class="chapter-head">
                 <div class="chapter-num">0</div>
@@ -719,8 +721,8 @@
                 <li>
                   <span class="n">3</span>
                   <div>
-                    로그인 후 화면 오른쪽 위에 <b>세션 만료까지 남은 시간 (총 1시간)</b>이 실시간으로 표시됩니다. <br />
-                    만료 임박 시 화면 상단에 안내 배너가 뜨며, 연장 버튼을 클릭시 세션이 연장됩니다.
+                    로그인 후 화면 오른쪽 위에 <b>세션(총 1시간) 만료까지 남은 시간</b>이 실시간으로 표시됩니다. <br />
+                    세션 만료 <b>5분 전</b> 화면 상단에 안내 배너가 뜨며, 연장 버튼을 클릭시 세션이 연장됩니다.
                   </div>
                 </li>
                 <figure class="shot">
@@ -733,7 +735,7 @@
                 </figure>
               </ul>
               <div class="callout tip">
-                ㄴ
+                <span class="tag">TIP</span>
                 <p>비밀번호는 상단 바의 <b>비밀번호 변경</b> 버튼으로 언제든 바꿀 수 있습니다.</p>
               </div>
               <figure class="shot">
@@ -746,6 +748,7 @@
               </figure>
             </section>
 
+            <!-- 기관 관리 -->
             <section class="chapter" id="organizations">
               <div class="chapter-head">
                 <div class="chapter-num">1</div>
@@ -774,12 +777,13 @@
               </figure>
             </section>
 
+            <!-- 사업단 관리 -->
             <section class="chapter" id="programs">
               <div class="chapter-head">
                 <div class="chapter-num">2</div>
                 <div>
                   <h2>사업단 관리</h2>
-                  <div class="sub">기관별 사업단(공익활동/역량활동 등)을 등록하고, 사업단 안에서 수요처·조·참여자를 관리합니다.</div>
+                  <div class="sub">기관별 사업단(공익활동/역량활동)을 등록하고, 사업단 안에서 수요처·조·참여자를 관리합니다.</div>
                 </div>
               </div>
               <ul class="steps">
@@ -1002,9 +1006,18 @@
                 </div>
               </div>
               <p>
-                발송 시각, 지역, 종류, 내용, 대상 인원, 성공/실패 여부를 조회합니다. 근무지역·근무시간 조건에 해당하는 재난문자만 자동으로
-                발송되므로 별도로 조작할 항목은 없고, <b>발송이 잘 되고 있는지 확인하는 용도</b>로 사용합니다.
+                발송 시각, 지역, 종류, 내용, 대상 인원, 성공/실패 여부를 조회합니다. 별도로 조작할 항목은 없고,
+                <b>발송이 잘 되고 있는지 확인하는 용도</b>로 사용합니다. <br />근무지역·근무시간 조건에 해당하는 재난문자만 발송됩니다.
+                참여자가 근무 시간에 출근하지 않더라도 재난문자는 발송됩니다.
               </p>
+              <figure class="shot">
+                <div class="bar">
+                  <div class="dots"><span></span><span></span><span></span></div>
+                  <div class="url">worksafe.co.kr/admin/disaster-push-logs</div>
+                </div>
+                <img src="img/8.disaster-log.png" alt="재난문자 발송이력" />
+                <figcaption>재난문자 발송이력</figcaption>
+              </figure>
             </section>
 
             <section class="chapter" id="admins">
