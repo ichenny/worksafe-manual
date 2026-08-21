@@ -4,653 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>기관 통합관리시스템 관리자 매뉴얼</title>
-    <link rel="icon" href="./icon/app-icon-64.png" type="image/png" />
-    <style>
-      :root {
-        --paper: #f6f4ef;
-        --surface: #ffffff;
-        --surface-alt: #eef1f6;
-        --ink: #1c2333;
-        --ink-muted: #5c6472;
-        --ink-faint: #8890a0;
-        --line: #e3ded2;
-        --line-soft: #ece7db;
-        --navy: #16233f;
-        --navy-soft: #24365c;
-        --accent: #b5601c;
-        --accent-soft: #f4e3ce;
-        --good: #2f8a58;
-        --good-soft: #e2f2e8;
-        --warn: #a5760b;
-        --warn-soft: #faf0d8;
-        --bad: #c23b3b;
-        --bad-soft: #fbe6e6;
-        --shot-mat: #ececec;
-        --shot-border: #d7d7d7;
-        --shot-bar: #f4f4f4;
-        --focus: #7b8cff;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-          --paper: #14161c;
-          --surface: #1b1e26;
-          --surface-alt: #20242f;
-          --ink: #ecebe6;
-          --ink-muted: #a6a9b4;
-          --ink-faint: #767a87;
-          --line: #2c303b;
-          --line-soft: #262a34;
-          --navy: #b9c4de;
-          --navy-soft: #8f9dc2;
-          --accent: #e2954f;
-          --accent-soft: #3a2c1c;
-          --good: #6fd39a;
-          --good-soft: #17301f;
-          --warn: #e0b955;
-          --warn-soft: #332a10;
-          --bad: #f08080;
-          --bad-soft: #331616;
-        }
-      }
-      :root[data-theme="dark"] {
-        --paper: #14161c;
-        --surface: #1b1e26;
-        --surface-alt: #20242f;
-        --ink: #ecebe6;
-        --ink-muted: #a6a9b4;
-        --ink-faint: #767a87;
-        --line: #2c303b;
-        --line-soft: #262a34;
-        --navy: #b9c4de;
-        --navy-soft: #8f9dc2;
-        --accent: #e2954f;
-        --accent-soft: #3a2c1c;
-        --good: #6fd39a;
-        --good-soft: #17301f;
-        --warn: #e0b955;
-        --warn-soft: #332a10;
-        --bad: #f08080;
-        --bad-soft: #331616;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        background: var(--paper);
-        color: var(--ink);
-        font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Segoe UI", sans-serif;
-        line-height: 1.6;
-        font-size: 15.5px;
-        -webkit-font-smoothing: antialiased;
-      }
-      h1,
-      h2,
-      h3,
-      h4 {
-        text-wrap: balance;
-        font-weight: 800;
-        letter-spacing: -0.01em;
-        color: var(--ink);
-      }
-      a {
-        color: var(--accent);
-      }
-      a:focus-visible,
-      button:focus-visible,
-      [tabindex]:focus-visible {
-        outline: 2px solid var(--focus);
-        outline-offset: 2px;
-      }
-      ::selection {
-        background: var(--accent-soft);
-      }
-
-      /* ---------- top bar ---------- */
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 40;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 14px 24px;
-        background: var(--navy);
-        color: #fff;
-      }
-      .topbar .brand {
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
-        font-weight: 800;
-        font-size: 15px;
-        letter-spacing: -0.01em;
-      }
-      .topbar .brand small {
-        font-weight: 500;
-        font-size: 11.5px;
-        color: rgba(255, 255, 255, 0.62);
-        letter-spacing: 0.02em;
-      }
-      .tabswitch {
-        display: flex;
-        gap: 2px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        padding: 3px;
-      }
-      .tabswitch button {
-        appearance: none;
-        border: none;
-        background: transparent;
-        color: rgba(255, 255, 255, 0.75);
-        font: inherit;
-        font-weight: 700;
-        font-size: 12.5px;
-        padding: 7px 14px;
-        border-radius: 6px;
-        cursor: pointer;
-        letter-spacing: -0.01em;
-      }
-      .tabswitch button[aria-selected="true"] {
-        background: #fff;
-        color: var(--navy);
-      }
-
-      /* ---------- page shell ---------- */
-      .shell {
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 0 24px 96px;
-      }
-      .hero {
-        padding: 44px 0 30px;
-        border-bottom: 1px solid var(--line);
-        margin-bottom: 34px;
-      }
-      .hero .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 11.5px;
-        font-weight: 800;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 14px;
-      }
-      .hero .eyebrow::before {
-        content: "";
-        width: 18px;
-        height: 1.5px;
-        background: var(--accent);
-      }
-      .hero h1 {
-        font-size: clamp(26px, 3.4vw, 34px);
-        margin: 0 0 12px;
-      }
-      .hero p.lead {
-        max-width: 70ch;
-        color: var(--ink-muted);
-        font-size: 16px;
-        margin: 0 0 18px;
-      }
-      .hero .meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 22px;
-        font-size: 12.5px;
-        color: var(--ink-faint);
-      }
-      .hero .meta b {
-        color: var(--ink-muted);
-        font-weight: 700;
-      }
-
-      /* ---------- layout: toc + content ---------- */
-      .layout {
-        display: grid;
-        grid-template-columns: 236px minmax(0, 1fr);
-        gap: 44px;
-        align-items: start;
-      }
-      .toc {
-        position: sticky;
-        top: 70px;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        padding: 4px 0;
-      }
-      .toc-label {
-        font-size: 11px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--ink-faint);
-        margin: 0 0 8px 12px;
-      }
-      .toc a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 12px;
-        border-radius: 8px;
-        color: var(--ink-muted);
-        text-decoration: none;
-        font-size: 13.5px;
-        font-weight: 600;
-        border-left: 2px solid transparent;
-      }
-      .toc a:hover {
-        background: var(--surface-alt);
-        color: var(--ink);
-      }
-      .toc a .badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 19px;
-        height: 19px;
-        border-radius: 5px;
-        background: var(--surface-alt);
-        color: var(--ink-faint);
-        font-size: 11px;
-        font-weight: 800;
-        font-variant-numeric: tabular-nums;
-        flex: none;
-      }
-
-      main {
-        min-width: 0;
-      }
-
-      section.chapter {
-        padding: 8px 0 56px;
-        border-bottom: 1px solid var(--line-soft);
-        margin-bottom: 12px;
-        scroll-margin-top: 76px;
-      }
-      section.chapter:last-child {
-        border-bottom: none;
-      }
-
-      .chapter-head {
-        display: flex;
-        align-items: flex-start;
-        gap: 16px;
-        margin-bottom: 18px;
-      }
-      .chapter-num {
-        flex: none;
-        width: 42px;
-        height: 42px;
-        border-radius: 10px;
-        background: var(--navy);
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 800;
-        font-size: 17px;
-        font-variant-numeric: tabular-nums;
-      }
-      .chapter-head h2 {
-        font-size: 21px;
-        margin: 0 0 4px;
-      }
-      .chapter-head .sub {
-        color: var(--ink-muted);
-        font-size: 14px;
-        max-width: 65ch;
-      }
-
-      .steps {
-        list-style: none;
-        margin: 0 0 22px;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .steps li {
-        display: flex;
-        gap: 12px;
-        padding: 12px 14px;
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        font-size: 14px;
-      }
-      .steps li .n {
-        flex: none;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: var(--accent-soft);
-        color: var(--accent);
-        font-weight: 800;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-variant-numeric: tabular-nums;
-        margin-top: 1px;
-      }
-      .steps li b {
-        color: var(--ink);
-      }
-      .steps li .path {
-        display: inline-block;
-        padding: 1px 6px;
-        background: var(--surface-alt);
-        border-radius: 4px;
-        font-size: 12px;
-        color: var(--ink-muted);
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      }
-
-      .callout {
-        display: flex;
-        gap: 10px;
-        padding: 12px 14px;
-        border-radius: 10px;
-        font-size: 13.5px;
-        margin: 14px 0;
-        border: 1px solid transparent;
-      }
-      .callout .tag {
-        flex: none;
-        font-weight: 800;
-        font-size: 11px;
-        letter-spacing: 0.03em;
-        padding: 2px 7px;
-        border-radius: 5px;
-        height: fit-content;
-      }
-      .callout.tip {
-        background: var(--good-soft);
-        border-color: color-mix(in srgb, var(--good) 30%, transparent);
-      }
-      .callout.tip .tag {
-        background: var(--good);
-        color: #fff;
-      }
-      .callout.warn {
-        background: var(--warn-soft);
-        border-color: color-mix(in srgb, var(--warn) 30%, transparent);
-      }
-      .callout.warn .tag {
-        background: var(--warn);
-        color: #fff;
-      }
-      .callout p {
-        margin: 0;
-        color: var(--ink);
-      }
-
-      .grid2 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 18px;
-      }
-      @media (max-width: 720px) {
-        .grid2 {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* ---------- screenshot frame ---------- */
-      figure.shot {
-        margin: 18px 0;
-        background: var(--shot-mat);
-        border: 1px solid var(--shot-border);
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow:
-          0 1px 2px rgba(0, 0, 0, 0.04),
-          0 8px 24px -14px rgba(0, 0, 0, 0.25);
-      }
-      figure.shot .bar {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 10px;
-        background: var(--shot-bar);
-        border-bottom: 1px solid var(--shot-border);
-      }
-      figure.shot .bar .dots {
-        display: flex;
-        gap: 5px;
-        flex: none;
-      }
-      figure.shot .bar .dots span {
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: #d3d3d3;
-      }
-      figure.shot .bar .url {
-        flex: 1;
-        background: #fff;
-        border: 1px solid #e2e2e2;
-        border-radius: 6px;
-        padding: 4px 10px;
-        font-size: 11px;
-        color: #7a7a7a;
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      figure.shot img {
-        display: block;
-        width: 100%;
-        height: auto;
-      }
-      figure.shot figcaption {
-        padding: 9px 12px;
-        font-size: 12.5px;
-        color: #6b6b6b;
-        background: #f7f7f7;
-        border-top: 1px solid var(--shot-border);
-      }
-
-      table.ref {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13px;
-        margin: 14px 0;
-      }
-      table.ref th,
-      table.ref td {
-        text-align: left;
-        padding: 9px 10px;
-        border-bottom: 1px solid var(--line);
-        vertical-align: top;
-      }
-      table.ref th {
-        color: var(--ink-faint);
-        font-weight: 700;
-        font-size: 11.5px;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-      table.ref td.role {
-        font-weight: 700;
-        white-space: nowrap;
-      }
-
-      .pill {
-        display: inline-block;
-        padding: 2px 8px;
-        border-radius: 999px;
-        font-size: 11.5px;
-        font-weight: 700;
-      }
-      .pill.super {
-        background: var(--bad-soft);
-        color: var(--bad);
-      }
-      .pill.org {
-        background: var(--accent-soft);
-        color: var(--accent);
-      }
-      .pill.staff {
-        background: var(--surface-alt);
-        color: var(--ink-muted);
-      }
-
-      /* ---------- script tab ---------- */
-      .script-wrap {
-        max-width: 880px;
-      }
-      .script-wrap h2 {
-        font-size: 20px;
-        margin: 40px 0 14px;
-      }
-      .script-wrap h2:first-child {
-        margin-top: 0;
-      }
-
-      .runsheet {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13.5px;
-        margin: 10px 0 6px;
-      }
-      .runsheet th,
-      .runsheet td {
-        border-bottom: 1px solid var(--line);
-        padding: 10px 10px;
-        text-align: left;
-        vertical-align: top;
-      }
-      .runsheet th {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--ink-faint);
-      }
-      .runsheet td.time {
-        font-variant-numeric: tabular-nums;
-        white-space: nowrap;
-        color: var(--accent);
-        font-weight: 700;
-      }
-      .runsheet td.topic {
-        font-weight: 700;
-      }
-
-      .faq {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin: 10px 0 6px;
-      }
-      .faq details {
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        padding: 12px 14px;
-        background: var(--surface);
-      }
-      .faq summary {
-        cursor: pointer;
-        font-weight: 700;
-        font-size: 14px;
-        list-style: none;
-      }
-      .faq summary::-webkit-details-marker {
-        display: none;
-      }
-      .faq summary::before {
-        content: "Q  ";
-        color: var(--accent);
-        font-weight: 800;
-      }
-      .faq p {
-        margin: 8px 0 0;
-        color: var(--ink-muted);
-        font-size: 13.5px;
-        padding-left: 22px;
-      }
-
-      .checklist {
-        list-style: none;
-        margin: 10px 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .checklist li {
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-        font-size: 13.5px;
-        padding: 10px 12px;
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-      .checklist li::before {
-        content: "";
-        flex: none;
-        width: 16px;
-        height: 16px;
-        margin-top: 2px;
-        border-radius: 4px;
-        border: 1.5px solid var(--ink-faint);
-      }
-
-      .note-strip {
-        background: var(--navy);
-        color: #fff;
-        border-radius: 12px;
-        padding: 16px 18px;
-        font-size: 13.5px;
-        margin: 18px 0;
-      }
-      .note-strip b {
-        color: var(--e2954f, #f0b673);
-      }
-
-      [hidden] {
-        display: none !important;
-      }
-
-      footer.pagefoot {
-        max-width: 1180px;
-        margin: 40px auto 0;
-        padding: 20px 24px 40px;
-        color: var(--ink-faint);
-        font-size: 12px;
-        border-top: 1px solid var(--line);
-      }
-
-      @media (max-width: 900px) {
-        .layout {
-          grid-template-columns: 1fr;
-        }
-        .toc {
-          position: static;
-          flex-direction: row;
-          flex-wrap: wrap;
-        }
-        .toc-label {
-          display: none;
-        }
-        .toc a {
-          border: 1px solid var(--line);
-        }
-      }
-    </style>
+    <link rel="icon" href="./assets/icon/app-icon-64.png" type="image/png" />
+    <link rel="stylesheet" href="./admin-manual.css" />
   </head>
   <body>
     <div class="topbar">
@@ -716,7 +71,7 @@
                     <div class="dots"><span></span><span></span><span></span></div>
                     <div class="url">worksafe.co.kr/admin/login</div>
                   </div>
-                  <img src="img/01.login.png" alt="관리자 로그인 화면" />
+                  <img src="assets/image/01.login.png" alt="관리자 로그인 화면" />
                   <figcaption>로그인 화면 — 이메일 / 비밀번호 입력 후 로그인</figcaption>
                 </figure>
                 <li>
@@ -731,7 +86,7 @@
                     <div class="dots"><span></span><span></span><span></span></div>
                     <div class="url">worksafe.co.kr/admin/login</div>
                   </div>
-                  <img src="img/01-2.session.png" alt="관리자 세션" />
+                  <img src="assets/image/01-2.session.png" alt="관리자 세션" />
                   <figcaption>관리자 화면 — 세션 / 세션 연장</figcaption>
                 </figure>
               </ul>
@@ -744,7 +99,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/login</div>
                 </div>
-                <img src="img/01-1.change-password.png" alt="관리자 로그인 화면" />
+                <img src="assets/image/01-1.change-password.png" alt="관리자 로그인 화면" />
                 <figcaption>관리자 화면 — 비밀번호 변경</figcaption>
               </figure>
             </section>
@@ -773,7 +128,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/organizations</div>
                 </div>
-                <img src="img/02.organizations.png" alt="기관 관리 목록 화면" />
+                <img src="assets/image/02.organizations.png" alt="기관 관리 목록 화면" />
                 <figcaption>기관 관리 - 기관 정보</figcaption>
               </figure>
             </section>
@@ -808,7 +163,7 @@
                     <div class="dots"><span></span><span></span><span></span></div>
                     <div class="url">worksafe.co.kr/admin/programs</div>
                   </div>
-                  <img src="img/2.programs.png" alt="사업단 관리 목록 화면" />
+                  <img src="assets/image/2.programs.png" alt="사업단 관리 목록 화면" />
                   <figcaption>사업단 관리 — 기관별 사업단 목록</figcaption>
                 </figure>
                 <figure class="shot">
@@ -816,7 +171,7 @@
                     <div class="dots"><span></span><span></span><span></span></div>
                     <div class="url">worksafe.co.kr/admin/programs</div>
                   </div>
-                  <img src="img/2-1.add-program.png" alt="사업단 추가 화면" />
+                  <img src="assets/image/2-1.add-program.png" alt="사업단 추가 화면" />
                   <figcaption>사업단 관리 — 사업단 추가(공익)</figcaption>
                 </figure>
                 <li>
@@ -859,7 +214,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/program?id=</div>
                 </div>
-                <img src="img/2-2.program-detail.png" alt="사업단 상세" />
+                <img src="assets/image/2-2.program-detail.png" alt="사업단 상세" />
                 <figcaption>사업단 상세</figcaption>
               </figure>
 
@@ -882,7 +237,7 @@
                     <div class="dots"><span></span><span></span><span></span></div>
                     <div class="url">worksafe.co.kr/admin/program?id=6</div>
                   </div>
-                  <img src="img/2-3.add-demandsites.png" alt="사업단 상세 - 수요처 추가" />
+                  <img src="assets/image/2-3.add-demandsites.png" alt="사업단 상세 - 수요처 추가" />
                   <figcaption>사업단 상세 — 수요처 추가</figcaption>
                 </figure>
                 <li>
@@ -897,7 +252,7 @@
                     <div class="dots"><span></span><span></span><span></span></div>
                     <div class="url">worksafe.co.kr/admin/program?id=6</div>
                   </div>
-                  <img src="img/2-4.demandsites-detail.png" alt="사업단 상세 - 수요처 상세" />
+                  <img src="assets/image/2-4.demandsites-detail.png" alt="사업단 상세 - 수요처 상세" />
                   <figcaption>사업단 상세 — 수요처 상세</figcaption>
                 </figure>
               </ul>
@@ -959,7 +314,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/program?id=6</div>
                 </div>
-                <img src="img/05-participant-add-modal.jpg" alt="참여자 추가 패널" />
+                <img src="assets/image/05-participant-add-modal.jpg" alt="참여자 추가 패널" />
                 <figcaption>참여자 추가 패널 — 엑셀 일괄 등록 또는 직접 입력</figcaption>
               </figure>
               <figure class="shot">
@@ -967,7 +322,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/participants</div>
                 </div>
-                <img src="img/06-participants-list.jpg" alt="참여자 관리 통합 목록" />
+                <img src="assets/image/06-participants-list.jpg" alt="참여자 관리 통합 목록" />
                 <figcaption>참여자 관리 — 전체 사업단 통합 조회</figcaption>
               </figure>
               <figure class="shot">
@@ -975,7 +330,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/participant?id=10</div>
                 </div>
-                <img src="img/07-participant-detail.jpg" alt="참여자 상세 - 근무 이력" />
+                <img src="assets/image/07-participant-detail.jpg" alt="참여자 상세 - 근무 이력" />
                 <figcaption>참여자 상세 — 근무 이력 · 휴가 이력 · 급여 관련 설정</figcaption>
               </figure>
             </section>
@@ -1014,7 +369,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/attendance</div>
                 </div>
-                <img src="img/08-attendance.jpg" alt="근무 관리 - 근무 탭" />
+                <img src="assets/image/08-attendance.jpg" alt="근무 관리 - 근무 탭" />
                 <figcaption>근무 관리 — 근무 탭 (정상·지각·조퇴 통계와 일자별 상세)</figcaption>
               </figure>
               <div class="callout tip">
@@ -1053,7 +408,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/escapes</div>
                 </div>
-                <img src="img/5.safety-map.png" alt="안전 관제 지도" />
+                <img src="assets/image/5.safety-map.png" alt="안전 관제 지도" />
                 <figcaption>안전 관제 — 근무 구역 및 참여자 위치 지도</figcaption>
               </figure>
             </section>
@@ -1076,7 +431,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/disaster-push-logs</div>
                 </div>
-                <img src="img/8.disaster-log.png" alt="재난문자 발송이력" />
+                <img src="assets/image/8.disaster-log.png" alt="재난문자 발송이력" />
                 <figcaption>재난문자 발송이력</figcaption>
               </figure>
             </section>
@@ -1146,7 +501,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/admins</div>
                 </div>
-                <img src="img/10.admins-list.png" alt="관리자 계정 목록" />
+                <img src="assets/image/10.admins-list.png" alt="관리자 계정 목록" />
                 <figcaption>관리자 계정 — 소속 기관 계정 목록</figcaption>
               </figure>
               <figure class="shot">
@@ -1154,7 +509,7 @@
                   <div class="dots"><span></span><span></span><span></span></div>
                   <div class="url">worksafe.co.kr/admin/admins</div>
                 </div>
-                <img src="img/10-1.admin-add-modal.png" alt="관리자 계정 발급 패널" />
+                <img src="assets/image/10-1.admin-add-modal.png" alt="관리자 계정 발급 패널" />
                 <figcaption>관리자 계정 발급 패널</figcaption>
               </figure>
             </section>
@@ -1308,26 +663,6 @@
       <footer class="pagefoot">교육 진행 스크립트 · 진행자 참고용</footer>
     </div>
 
-    <script>
-      (function () {
-        var buttons = document.querySelectorAll(".tabswitch button");
-        var panels = {
-          manual: document.getElementById("panel-manual"),
-          script: document.getElementById("panel-script"),
-        };
-        buttons.forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            var target = btn.getAttribute("data-tab");
-            buttons.forEach(function (b) {
-              b.setAttribute("aria-selected", String(b === btn));
-            });
-            Object.keys(panels).forEach(function (key) {
-              panels[key].hidden = key !== target;
-            });
-            window.scrollTo({ top: 0, behavior: "instant" });
-          });
-        });
-      })();
-    </script>
+    <script src="./admin-manual.js"></script>
   </body>
 </html>
