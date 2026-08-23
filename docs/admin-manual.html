@@ -146,8 +146,8 @@
                 <li>
                   <span class="n">1</span>
                   <div>
-                    오른쪽 위 <b>+ 사업단 추가</b> → 기관 선택, 담당자(복수 지정 가능), 사업 유형, 사업단명, 시작일·종료일, 시작·종료 시간,
-                    시급을 입력합니다.
+                    오른쪽 위 <b>+ 사업단 추가</b> → 기관 선택, <b>담당자</b>, 사업 유형, 사업단명, 시작일·종료일, 시작·종료 시간, 시급을
+                    입력합니다.
                   </div>
                 </li>
                 <div class="callout tip">
@@ -156,6 +156,16 @@
                     사업단 운영 시간은 실제 근무 시간에 영향을 미치지 않습니다.
                     <br />
                     역량 활동의 경우 <b>4대 보험</b>을 설정할 수 있습니다.
+                    <br />
+                    <b>보조 담당자</b>(선택)는 수요처 담당자로 지정할 수 있는 사람을 한 명 더 추가하는 항목입니다. <b>사업단 담당자와
+                    수요처 담당자를 다르게 지정해야 하는 경우</b>, 그 사람을 보조 담당자로 추가해 두세요.
+                  </p>
+                </div>
+                <div class="callout warn">
+                  <span class="tag">주의</span>
+                  <p>
+                    <b>담당자·부관리자</b> 권한으로 로그인한 계정은 <b>자신이 담당자 또는 보조 담당자로 지정된 사업단만</b>
+                    수정·비활성화하거나 상세 페이지에 들어갈 수 있습니다.
                   </p>
                 </div>
                 <figure class="shot">
@@ -531,23 +541,144 @@
                   <td>이달의 휴가 건수, 유급/무급 구분, 총 휴가일수와 참여자별 휴가 이력을 확인합니다.</td>
                 </tr>
               </table>
-              <figure class="shot">
-                <div class="bar">
-                  <div class="dots"><span></span><span></span><span></span></div>
-                  <div class="url">worksafe.co.kr/admin/attendance</div>
+
+              <ul class="steps">
+                <!-- 근무 -->
+                <li>
+                  <span class="n">1</span>
+                  <div>
+                    <b>근무</b> 탭에서는 사업단 참여자 전원의 일자별 근무 기록을 확인합니다. <b>출근</b> 시각이 근무 시작 시각보다
+                    <b>15분 이상 늦으면</b> <b>확인필요</b> 배지가 뜨고, 관리자가 <b>수정</b>을 저장하면 <b>확인 완료</b>로 바뀝니다.
+                  </div>
+                </li>
+                <div class="callout warn">
+                  <span class="tag">참고</span>
+                  <p>
+                    <b>위치</b>는 관제 구역 밖에서 찍혔으면 빨간색으로 표시됩니다(좌표·구역 정보가 없으면 '판정 불가').<br />
+                    <b>관리자 확인</b>은 <b>안전 관제</b>에서 이탈이 감지된 기록의 처리 상태로, <b>이탈중</b>/<b>처리완료</b>로 표시되며
+                    실제 처리(확인)는 <b>안전 관제</b> 화면에서 합니다. <br />
+                    <b>상태</b>는 정상·지각·조퇴·무효화로 나뉩니다. 지각·조퇴는 자동으로 처리되지 않고 관리자가 <b>수정</b>에서 직접
+                    지정해야 반영됩니다. <br />
+                    <b>사고유무</b>·<b>서명</b>은 참여자가 그날 작성한 활동일지에서 가져옵니다 — 활동일지를 아직 안 썼으면 둘 다 '-'로,
+                    서명을 아직 안 했으면 <b>미완료</b>로 표시됩니다. <br />
+                    <b>수정</b>에서는 <b>출근·퇴근 시각, 상태, 수정 사유</b>(필수)를 바꿀 수 있습니다. 잘못 찍힌 기록은 별도의 비활성화 기능
+                    대신 <b>무효화</b>로 처리하며, 무효화된 기록은 흐리게 표시되고 수정이나 다시 활성화 할 수 없습니다.
+                  </p>
                 </div>
-                <img src="assets/image/08-attendance.jpg" alt="근무 관리 - 근무 탭" />
-                <figcaption>근무 관리 — 근무 탭 (정상·지각·조퇴 통계와 일자별 상세)</figcaption>
-              </figure>
-              <div class="callout tip">
-                <span class="tag">TIP</span>
-                <p>
-                  위치 열에 빨간색으로 거리(예: 19.9km)가 표시되면 등록된 근무 구역을 벗어나 출·퇴근을 찍은 경우입니다. 사유를 확인한 뒤
-                  필요하면 기록을 수정하세요.
-                </p>
-              </div>
+                <figure class="shot">
+                  <div class="bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="url">worksafe.co.kr/admin/attendance</div>
+                  </div>
+                  <img src="assets/image/4-1.attendance.png" alt="근무 관리 - 근무 탭" />
+                  <figcaption>근무 관리 — 근무 탭 (정상·지각·조퇴 통계와 일자별 상세)</figcaption>
+                </figure>
+
+                <!-- 교육 -->
+                <li>
+                  <span class="n">2</span>
+                  <div>
+                    <b>교육</b> 탭 안에는 <b>교육 정의</b>(등록된 교육 목록), <b>이수 현황</b>(참여자별 이수 기록),
+                    <b>필수교육 현황</b>(필수 교육을 아직 못 마친 참여자) 3개 하위 탭이 있습니다.
+                  </div>
+                </li>
+                <figure class="shot">
+                  <div class="bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="url">worksafe.co.kr/admin/attendance</div>
+                  </div>
+                  <img src="assets/image/4-2.training.png" alt="근무 관리 - 교육 탭" />
+                  <figcaption>근무 관리 — 교육 탭</figcaption>
+                </figure>
+                <li>
+                  <span class="n">3</span>
+                  <div>
+                    <b>교육 정의</b>에서 <b>+ 교육 추가</b>를 누르면
+                    <b
+                      >교육명, 구분(사전/기간중), 지급방식(미지급·근무시간 합산·시간당 별도지급·일당 별도지급), 교육 날짜·시작·종료 시간,
+                      필수 여부</b
+                    >를 설정하고, 카드의 <b>활성/비활성</b> 토글로 그 교육을 켜고 끌 수 있습니다.
+                  </div>
+                </li>
+                <div class="callout tip">
+                  <span class="tag">참고</span>
+                  <p>
+                    <b>교육날짜</b>를 입력하면 전체 조 중 이 날짜가 근무일인 조가 몇 개인지, 근무일이 아닌 조는 어디인지 보여주는데,
+                    등록을 막지는 않습니다.
+                  </p>
+                </div>
+                <figure class="shot">
+                  <div class="bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="url">worksafe.co.kr/admin/attendance</div>
+                  </div>
+                  <img src="assets/image/4-2-1.add-training.png" alt="근무 관리 - 교육 추가" />
+                  <figcaption>근무 관리 — 교육 추가</figcaption>
+                </figure>
+
+                <!-- 교육 이수 현황  -->
+                <li>
+                  <span class="n">3</span>
+                  <div>
+                    <b>+ 이수 등록</b>에서는 참여자를 <b>여러 명 동시에 체크</b>해 한 번에 등록할 수 있습니다. <b>교육</b>(활성 상태인
+                    교육만 목록에 뜸), <b>이수일자</b>, <b>이수시간</b>(선택, 비우면 교육 기준시간 사용)을 지정하며, 이미 이수 처리된
+                    참여자는 목록에서 <b>'이미 이수함'</b>으로 표시되어 선택할 수 없습니다.
+                  </div>
+                </li>
+                <figure class="shot">
+                  <div class="bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="url">worksafe.co.kr/admin/attendance</div>
+                  </div>
+                  <img src="assets/image/4-2-2.training-complete.png" alt="근무 관리 - 교육 이수" />
+                  <figcaption>근무 관리 — 교육 이수</figcaption>
+                </figure>
+
+                <!-- 필수 교육 현황 -->
+                <li>
+                  <span class="n">3</span>
+                  <div>
+                    <b>필수교육 현황</b>(필수교육 미이수자) 탭에서는 <b>참여자명</b>와 그 참여자가 아직 못 마친
+                    <b>미이수 필수교육</b> 목록을 보여줍니다.
+                  </div>
+                </li>
+                <figure class="shot">
+                  <div class="bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="url">worksafe.co.kr/admin/attendance</div>
+                  </div>
+                  <img src="assets/image/4-2-3.essential training.png" alt="근무 관리 - 필수 교육 이수" />
+                  <figcaption>근무 관리 — 필수 교육 이수</figcaption>
+                </figure>
+
+                <!-- 휴가 -->
+                <li>
+                  <span class="n">3</span>
+                  <div>
+                    <b>휴가 현황</b> 탭에서는 이달의 <b>휴가 건수·유급/무급 구분·총 휴가일수</b>를 확인할 수 있습니다.<br />
+                    하단의 상세 표에서 참여자별 시작일·종료일·일수·유형·사유와 <b>연차 현황</b>(총 N일 중 사용일 사용, 잔여일 남음)을
+                    확인합니다.
+                  </div>
+                </li>
+                <div class="callout warn">
+                  <span class="tag">주의</span>
+                  <p>
+                    이 화면에서는 연차를 <b>부여할 수 없습니다</b>. 참여자의 연간 <b>총 연차 일수</b>는 사업단 상세의 참여자 목록의
+                    <b>연차 설정</b> 클릭하여 연도별로 지정합니다.
+                  </p>
+                </div>
+                <figure class="shot">
+                  <div class="bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="url">worksafe.co.kr/admin/attendance</div>
+                  </div>
+                  <img src="assets/image/4-3.leave.png" alt="근무 관리 - 휴가 탭" />
+                  <figcaption>근무 관리 — 휴가 탭</figcaption>
+                </figure>
+              </ul>
             </section>
 
+            <!-- 안전 관제 -->
             <section class="chapter" id="escapes">
               <div class="chapter-head">
                 <div class="chapter-num">5</div>
@@ -580,6 +711,7 @@
               </figure>
             </section>
 
+            <!-- 재난문자 발송이력 -->
             <section class="chapter" id="disaster">
               <div class="chapter-head">
                 <div class="chapter-num">6</div>
@@ -603,6 +735,7 @@
               </figure>
             </section>
 
+            <!-- 관리자 계정 -->
             <section class="chapter" id="admins">
               <div class="chapter-head">
                 <div class="chapter-num">8</div>
